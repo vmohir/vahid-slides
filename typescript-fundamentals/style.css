@@ -33,7 +33,8 @@ h2 {
     font-size: 4rem !important;
 }
 
-code {
+.remark-slides-area code,
+.remark-preview-area code {
     background: #111;
     border-radius: 5px;
     padding: 2px 7px;
@@ -100,4 +101,14 @@ img {
     top: 50%;
     transform: translateY(-40%);
     right: -1px;
+}
+
+.note:after {
+    content: '*';
+    color: #777;
+    padding: 0 2px;
+}
+
+.note {
+    display: inline-block;
 }
