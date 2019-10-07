@@ -10,11 +10,27 @@ _By: Vahid Mohammadi_
 
 ---
 
-## Typescript Get Started
+<div class="doc-link">
+    <a href="https://devdocs.io/javascript/">DevDocs JavaScript</a>
+    <a href="https://devhints.io/es6">ES6 Docs</a>
+    <a href="https://www.learnrxjs.io">LearnRxJS</a>
+</div>
+
+## Some JavaScript Tips
+
+-   Don't use `var`. Use `const` or `let` instead
+-   Use Array methods: `forEach`, `map`, `reduce`, `filter`, `slice`, `find`, `findIndex`, `includes`, `some`, `every`
+-   Mutation
+-   Use backticks
+-   Use Destructing
+
+---
+
+## Getting Started With Typescript
 
 <div class="doc-link">
-    <a href="http://www.typescriptlang.org/docs/handbook/tsconfig-json.html">Tsconfig Doc</a>
-    <a href="http://www.typescriptlang.org/docs/handbook/compiler-options.html">CompilerOptions Doc</a>
+    <a href="http://www.typescriptlang.org/docs/handbook/tsconfig-json.html">Tsconfig Docs</a>
+    <a href="http://www.typescriptlang.org/docs/handbook/compiler-options.html">CompilerOptions Docs</a>
 </div>
 
 Things to note:
@@ -35,18 +51,33 @@ Things to note:
 ## Basic Types
 
 <div class="doc-link">
-    <a href="http://www.typescriptlang.org/docs/handbook/basic-types.html">Basic Types Doc</a>
-    <a href="http://www.typescriptlang.org/docs/handbook/interfaces.html">Interfaces Doc</a>
+    <a href="http://www.typescriptlang.org/docs/handbook/basic-types.html">Basic Types Docs</a>
+    <a href="http://www.typescriptlang.org/docs/handbook/interfaces.html">Interfaces Docs</a>
 </div>
 
--   boolean, number, string
--   any, never, void
--   null, undefined
--   array, object, .note[interface]
--   index
+-   `boolean`, `number`, `string`
+-   `any`, `never`, `void`
+-   `null`, `undefined`
+-   array, [Interface](http://www.typescriptlang.org/docs/handbook/interfaces.html)
+-   [Index signature](http://www.typescriptlang.org/docs/handbook/interfaces.html#indexable-types)
+-   [Functions](http://www.typescriptlang.org/docs/handbook/interfaces.html#function-types)
+-   Casting
+-   [Enums](http://www.typescriptlang.org/docs/handbook/enums.html)
+-   Unions
 
 ???
-interface:
+
+-   Don't use `String`. Use `string`
+-   `any[]` and `Array<any>` are same
+
+### interface
+
+-   Optional properties
+-   Readonly properties
+    -   `ReadonlyArray<number>`
+-   extends
+-   mix with index signatures
+
 مث آبجکت جاواسکریپت نیس که بتونی بهش یه چیزی اضافه کنی.
 
 ```js
@@ -56,4 +87,34 @@ const newArray: NewType = oldArray.map < OldType > (old => ({ ...old, key: value
 
 ---
 
-## Interfaces
+## Generics
+
+<div class="doc-link">
+    <a href="http://www.typescriptlang.org/docs/handbook/generics.html">Generics Docs</a>
+</div>
+
+-   Makes types, interfaces, functions and class generic
+-   default type: `function func<T = string>(arg: T): T {}`
+-   `extends` type: `function func<T extends any[]>(arg: T) {}`
+
+???
+
+If have time, show metrix filter select types
+
+---
+
+## TSLint & ESLint
+
+<div class="doc-link">
+    <a href="https://palantir.github.io/tslint/">TSLint</a>
+    <a href="https://eslint.org">ESLint</a>
+    <a href="https://medium.com/palantir/tslint-in-2019-1a144c2317a9">TSLint in 2019</a>
+    <a href="https://palantir.github.io/tslint/rules/">TSLint Rules</a>
+    <a href="https://eslint.org/docs/rules/">ESLint Rules</a>
+    <a href="http://codelyzer.com/">Codelyzer</a>
+</div>
+
+-   `tslint.json` and `.eslintrc` configuration files
+-   IDE extentions
+-   `ng lint` in Angular
+-   Codelyzer
