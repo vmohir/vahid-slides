@@ -39,7 +39,7 @@ Things to note:
 -   Configuration: `tsconfig.json`
     -   `files`, `include`, `exclude`
     -   `extends`
-    -   Compileroptions:
+    -   CompilerOptions:
         -   `baseUrl`
         -   `paths`
         -   `strict` flags
