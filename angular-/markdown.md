@@ -1,0 +1,90 @@
+class: center, middle
+
+## Angular Structural Directives
+
+_By: Vahid Mohammadi_
+
+<div class="fz-14">
+    <i>Created with: <a href="https://github.com/gnab/remark">RemarkJS</a></i>
+</div>
+
+---
+
+<div class="doc-link">
+    <a href="https://malcoded.com/posts/angular-ngfor/">*ngFor Everything</a>
+    <a href="https://angular.io/api/common/NgForOf">Angular Docs</a>
+    <a href="https://angular.io/api/common/KeyValuePipe">keyvalue Pipe Docs</a>
+</div>
+
+## \*ngFor
+
+Get `index`, `first`, `last`, `even`, `odd` of current element
+
+### When are changes propagated to the DOM?
+
+-   When an element is added to the array
+-   When an element is removed from the array
+-   When items are reordered
+
+### Optimizing \*ngFor
+
+By default ngFor is optimized by array elements reference, But sometimes we have immutable data.
+
+> Use `trackBy`
+
+### Use objects in \*ngFor
+
+You can use `keyvalue` pipe
+
+---
+
+## \*ngIf
+
+<div class="doc-link">
+    <a href="https://ultimatecourses.com/blog/angular-ngif-else-then">*ngIf Everything</a>
+    <a href="https://alligator.io/angular/ngif-new-features-angular4/">*ngIf Other Features</a>
+</div>
+
+-   Try not to call functions!
+    -   Performance
+    -   It may not detect changes
+-   `else` and `then else`
+-   Create scoped variables with `*ngFor`
+-   `*ngIf` vs `[hidden]`
+
+???
+Usages of creating variable:
+
+-   make a big variable look shorter
+-   call a function once and get the result in the scoped html (not recommended)
+
+\*ngFor is for null check but [hidden] is not. You can also use `?.`
+
+---
+
+## ng-template and ng-container
+
+<div class="doc-link">
+    <a href="https://blog.angular-university.io/angular-ng-template-ng-container-ngtemplateoutlet/">ng-container ng-template Everything</a>
+    <a href="https://medium.com/@symposia/dynamic-component-rendering-in-angular-5-with-ngcomponentoutlet-410bec3ece75">Dynamic Components</a>
+</div>
+
+-   use `*` directives without creating an element (ex. `<tr>`)
+-   use multiple `*` directives
+-   display `ng-templates`
+-   dispaly dynamic components
+    -   How can we have `@Input()`s? [Use custom injectors](https://stackoverflow.com/questions/42056828/pass-an-input-value-into-a-ngcomponentoutlet-created-component)
+
+> Being “virtual” means the <ng-template> contents won’t actually exist in the compiled DOM, until it’s needed.
+
+---
+
+## ng-content
+
+<div class="doc-link">
+    <a href="http://www.typescriptlang.org/docs/handbook/generics.html">Generics Docs</a>
+</div>
+
+-   Makes types, interfaces, functions and class generic
+-   default type: `function func<T = string>(arg: T): T {}`
+-   `extends` type: `function func<T extends any[]>(arg: T) {}`
