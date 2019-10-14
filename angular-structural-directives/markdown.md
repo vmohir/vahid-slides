@@ -67,6 +67,8 @@ Usages of creating variable:
 <div class="doc-link">
     <a href="https://blog.angular-university.io/angular-ng-template-ng-container-ngtemplateoutlet/">ng-container ng-template Everything</a>
     <a href="https://medium.com/@symposia/dynamic-component-rendering-in-angular-5-with-ngcomponentoutlet-410bec3ece75">Dynamic Components</a>
+    <a href="https://blog.angular-university.io/angular-ng-content/">ng-content Everything</a>
+    <a href="https://medium.com/@tkssharma/understanding-viewchildren-viewchild-contentchildren-and-contentchild-b16c9e0358e">View & Content Children</a>
 </div>
 
 -   use `*` directives without creating an element (ex. `<tr>`)
@@ -77,14 +79,11 @@ Usages of creating variable:
 
 > Being “virtual” means the <ng-template> contents won’t actually exist in the compiled DOM, until it’s needed.
 
----
+### ng-content
 
-## ng-content
+-   selector can be `tag`, `[attribute]` or `.css-class`
 
-<div class="doc-link">
-    <a href="http://www.typescriptlang.org/docs/handbook/generics.html">Generics Docs</a>
-</div>
+### View & Content Children
 
--   Makes types, interfaces, functions and class generic
--   default type: `function func<T = string>(arg: T): T {}`
--   `extends` type: `function func<T extends any[]>(arg: T) {}`
+-   `@ViewChild()` and `@ViewChildren()`
+-   `@ContentChild()` and `@ContentChildren()`

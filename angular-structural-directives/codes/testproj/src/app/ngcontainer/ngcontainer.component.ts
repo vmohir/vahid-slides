@@ -5,7 +5,6 @@ import { TabTwoComponent } from './tab-two/tab-two.component';
 @Component({
     selector: 'app-ngcontainer',
     templateUrl: './ngcontainer.component.html',
-    styleUrls: ['./ngcontainer.component.sass'],
 })
 export class NgcontainerComponent {
     arr: { id: string; value: string }[] = [{ id: 'id1', value: 'val1' }, { id: 'id2', value: 'val2' }];
