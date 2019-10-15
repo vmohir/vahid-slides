@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TabOneComponent } from './tab-one/tab-one.component';
 import { TabTwoComponent } from './tab-two/tab-two.component';
 
