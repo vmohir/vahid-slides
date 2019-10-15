@@ -49,7 +49,7 @@ You can use `keyvalue` pipe
     -   Performance
     -   It may not detect changes
 -   `else` and `then else`
--   Create scoped variables with `*ngFor`
+-   Create scoped variables with `*ngIf`
 -   `*ngIf` vs `[hidden]`
 
 ???

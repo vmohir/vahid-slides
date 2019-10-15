@@ -10,9 +10,10 @@ import { TabOneComponent } from './ngcontainer/tab-one/tab-one.component';
 import { TabTwoComponent } from './ngcontainer/tab-two/tab-two.component';
 import { NgcontentComponent } from './ngcontent/ngcontent.component';
 import { NgcontentchildComponent } from './ngcontent/ngcontentchild/ngcontentchild.component';
+import { TestDirective } from './test.directive';
 
 @NgModule({
-    declarations: [AppComponent, NgforComponent, NgifComponent, NgcontainerComponent, TabOneComponent, TabTwoComponent, NgcontentComponent, NgcontentchildComponent],
+    declarations: [AppComponent, NgforComponent, NgifComponent, NgcontainerComponent, TabOneComponent, TabTwoComponent, NgcontentComponent, NgcontentchildComponent, TestDirective],
     entryComponents: [TabOneComponent, TabTwoComponent],
     imports: [BrowserModule, AppRoutingModule],
     providers: [],

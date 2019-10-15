@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChildren, QueryList, ViewChild } from '@angular/core';
+import { NgcontentchildComponent } from './ngcontentchild/ngcontentchild.component';
+import { TestDirective } from '../test.directive';
 
 @Component({
     selector: 'app-ngcontent',
@@ -10,4 +12,5 @@ export class NgcontentComponent {
     clearButtonClick() {
         this.arr = [];
     }
+    @ViewChild('myDirective') w: TestDirective;
 }
