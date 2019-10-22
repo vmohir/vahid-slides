@@ -4,6 +4,8 @@ class: center, middle
 
 _By: Vahid Mohammadi_
 
+_Sample code is available in `angular-sample/src/app`_
+
 <div class="fz-14">
     <i>Created with: <a href="https://github.com/gnab/remark">RemarkJS</a></i>
 </div>
@@ -49,7 +51,7 @@ You can use `keyvalue` pipe
     -   Performance
     -   It may not detect changes
 -   `else` and `then else`
--   Create scoped variables with `*ngFor`
+-   Create scoped variables with `*ngIf`
 -   `*ngIf` vs `[hidden]`
 
 ???
@@ -69,6 +71,7 @@ Usages of creating variable:
     <a href="https://medium.com/@symposia/dynamic-component-rendering-in-angular-5-with-ngcomponentoutlet-410bec3ece75">Dynamic Components</a>
     <a href="https://blog.angular-university.io/angular-ng-content/">ng-content Everything</a>
     <a href="https://medium.com/@tkssharma/understanding-viewchildren-viewchild-contentchildren-and-contentchild-b16c9e0358e">View & Content Children</a>
+    <a href="https://netbasal.com/angular-2-take-advantage-of-the-exportas-property-81374ce24d26">Directive exportAs</a>
 </div>
 
 -   use `*` directives without creating an element (ex. `<tr>`)
@@ -87,3 +90,7 @@ Usages of creating variable:
 
 -   `@ViewChild()` and `@ViewChildren()`
 -   `@ContentChild()` and `@ContentChildren()`
+
+### Directives exportAs
+
+You can export directives to a `#template`
