@@ -2,6 +2,8 @@ class: center, middle
 
 ## Typescript Fundamentals
 
+_Sample code is available in `codes/javascript-code-samples.js`_
+
 _By: Vahid Mohammadi_
 
 <div class="fz-14">
@@ -65,26 +67,6 @@ Things to note:
 -   [Enums](http://www.typescriptlang.org/docs/handbook/enums.html)
 -   Unions
 
-???
-
--   Don't use `String`. Use `string`
--   `any[]` and `Array<any>` are same
-
-### interface
-
--   Optional properties
--   Readonly properties
-    -   `ReadonlyArray<number>`
--   extends
--   mix with index signatures
-
-مث آبجکت جاواسکریپت نیس که بتونی بهش یه چیزی اضافه کنی.
-
-```js
-const newObj: NewType = { ...oldObj, key: value };
-const newArray: NewType = oldArray.map < OldType > (old => ({ ...old, key: value }));
-```
-
 ---
 
 ## Generics
@@ -96,10 +78,6 @@ const newArray: NewType = oldArray.map < OldType > (old => ({ ...old, key: value
 -   Makes types, interfaces, functions and class generic
 -   default type: `function func<T = string>(arg: T): T {}`
 -   `extends` type: `function func<T extends any[]>(arg: T) {}`
-
-???
-
-If have time, show metrix filter select types
 
 ---
 
