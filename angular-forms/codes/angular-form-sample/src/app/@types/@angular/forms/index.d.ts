@@ -92,7 +92,7 @@ declare module '@angular/forms' {
      * functions.
      */
     array<T extends any[]>(
-      controlsConfig: T,
+      controlsConfig: AbstractControl<ArrayElement<T>>[],
       validatorOrOpts?: ValidatorFn | ValidatorFn[] | AbstractControlOptions | null,
       asyncValidator?: AsyncValidatorFn | AsyncValidatorFn[] | null
     ): FormArray<T>;

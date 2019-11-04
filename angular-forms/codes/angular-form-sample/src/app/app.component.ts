@@ -1,5 +1,13 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormArray } from '@angular/forms';
+
+type FormType = {
+    username: string;
+    sites: string[];
+    financialInfo: {
+        financialId: string;
+    };
+};
 
 @Component({
     selector: 'app-root',
@@ -9,9 +17,17 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class AppComponent {
     constructor(private formBuilder: FormBuilder) {}
 
-    userInfoForm = this.formBuilder.group<{ username: string; sites: string[]; financialInfo: { financialId: string } }>({
+    userInfoForm = this.formBuilder.group<FormType>({
         username: [, [Validators.required]],
         sites: this.formBuilder.array([]),
-        financialInfo: this.formBuilder.group({ financialId: [''] }),
+        financialInfo: this.formBuilder.group<FormType['financialInfo']>({ financialId: [''] }),
     });
+
+    x() {
+        (this.userInfoForm.get('sites') as FormArray<string[]>).push(this.formBuilder.control(undefined));
+    }
+    test(event) {
+        console.log('TCL: AppComponent -> test -> event', event);
+        this.userInfoForm.reset();
+    }
 }
