@@ -24,7 +24,9 @@ export class AppComponent {
     });
 
     x() {
-        (this.userInfoForm.get('sites') as FormArray<string[]>).push(this.formBuilder.control(undefined));
+        // this.userInfoForm.get('username')
+        // this.userInfoForm.get('sites')
+        // (this.userInfoForm.get('sites') as FormArray<string[]>).push(this.formBuilder.control(undefined));
     }
     test(event) {
         console.log('TCL: AppComponent -> test -> event', event);

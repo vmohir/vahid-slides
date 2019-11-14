@@ -5,7 +5,7 @@ import { ArrayElement } from '../../../interfaces/utilities';
 import { Observable } from 'rxjs';
 
 declare module '@angular/forms' {
-  // export type GetAbstractControlType<T> = [T] extends [any[]] ? FormArray<T> : [T] extends [object] ? FormGroup<T> : FormControl<T>;
+//   export type GetAbstractControlType<T> = [T] extends [any[]] ? FormArray<T> : [T] extends [object] ? FormGroup<T> : FormControl<T>;
   export type GetAbstractControlType<T> = AbstractControl<T>;
   export type FormBuilderFormControl<T> =
     | FormControl<T>

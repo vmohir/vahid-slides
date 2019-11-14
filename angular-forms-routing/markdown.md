@@ -38,8 +38,7 @@ _By: Vahid Mohammadi_
 -   Custom Validators
 -   Form Group Validators
 -   `updateOn`
-    -   Use `updateOn` in FormGroup and FormArray to apply to all child FormControls 
--   dirty
+    -   Use `updateOn` in FormGroup and FormArray to apply to all child FormControls
 
 ---
 
@@ -90,6 +89,7 @@ _By: Vahid Mohammadi_
     <a href="https://angular.io/api/router/Route">Route</a>
     <a href="https://angular.io/guide/router#route-parameters">Route Parameters</a>
     <a href="https://angular.io/guide/router#integrate-routing-with-your-app">AngularCli Routing Options</a>
+    <a href="https://angular.io/api/router/ExtraOptions">Router Extra Options</a>
 </div>
 
 - `<router-outlet>`
@@ -102,6 +102,7 @@ _By: Vahid Mohammadi_
         - Route params
         - wildcard
 - AngularCli `--routing`
+- Router extra options
 
 ---
 
@@ -126,6 +127,14 @@ _By: Vahid Mohammadi_
 ## Guards
 
 <div class="doc-link">
+    <a href="https://angular.io/guide/router#milestone-5-route-guards">Route Guard Doc</a>
+    <a href="https://angular.io/guide/router#milestone-6-asynchronous-routing">Lazy Loading</a>
 </div>
 
-https://angular.io/guide/router#milestone-5-route-guards
+- Angular Guards
+    - CanActivate
+    - CanActivateChild
+    - CanDeactivate
+    - Resolve
+    - CanLoad
+- LazyLoading
