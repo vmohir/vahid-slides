@@ -12,4 +12,5 @@ _By: Vahid Mohammadi_
 
 <div class="doc-link">
     <a href="https://prettier.io/docs/en/editors.html">Install Prettier</a>
+    <a href="">Netlify</a>
 </div>
