@@ -1,6 +1,6 @@
 class: center, middle
 
-## Git
+# Git
 
 _By: Vahid Mohammadi_
 
@@ -17,3 +17,12 @@ _By: Vahid Mohammadi_
 </div>
 
 # Branch
+
+<div class="terminal">
+    <div class="command">
+
+`git push`
+
+    </div>
+
+</div>
