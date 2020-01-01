@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css?family=Fira+Code|Fira+Sans|Rancho&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Fira+Code|Fira+Sans|Rancho&display=swap');
 
 body {
-  font-family: "Fira Sans", sans-serif;
+  font-family: 'Fira Sans', sans-serif;
 }
 p {
   margin-bottom: 0;
@@ -9,13 +9,13 @@ p {
 h1,
 h2,
 h3 {
-  font-family: "Rancho", cursive;
+  font-family: 'Rancho', cursive;
   font-weight: normal;
 }
 h4,
 h5,
 h6 {
-  font-family: "Rancho", cursive;
+  font-family: 'Rancho', cursive;
   font-weight: normal;
 }
 h1 {
@@ -45,7 +45,7 @@ img {
 }
 .remark-code,
 .remark-inline-code {
-  font-family: "Fira Code", monospace;
+  font-family: 'Fira Code', monospace;
 }
 
 .remark-slide-content {
@@ -79,17 +79,17 @@ img {
 }
 
 .doc-link:before {
-  content: "↓ links";
+  content: '↓ links';
   color: #999;
   position: absolute;
   right: 0;
   font-size: 11px;
-  font-family: "Fira Code";
+  font-family: 'Fira Code';
   top: -20px;
 }
 
 .doc-link a:before {
-  content: "•";
+  content: '•';
   position: absolute;
   top: 50%;
   transform: translateY(-40%);
@@ -97,7 +97,7 @@ img {
 }
 
 .note:after {
-  content: "*";
+  content: '*';
   color: #777;
   padding: 0 2px;
 }
