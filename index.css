@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Fira+Code|Fira+Sans|Rancho&display=swap');
 
 body {
-  font-family: 'Rancho', cursive;
+  font-family: 'Fira Sans', sans-serif;
   background: #eeeeee;
+}
+h1,
+h2 {
+  font-family: 'Rancho', cursive;
 }
 .toc {
   background: #ffffff;
@@ -16,4 +20,7 @@ body {
 }
 .group h3 {
   margin-bottom: 0;
+}
+.group a {
+  color: #444444;
 }
