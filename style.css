@@ -23,7 +23,11 @@ h1 {
 }
 
 h2 {
-  font-size: 4rem !important;
+  font-size: 45px !important;
+}
+
+h3 {
+  font-size: 35px !important;
 }
 
 .remark-slides-area code,
@@ -51,6 +55,8 @@ img {
 .remark-slide-content {
   background: #272822;
   color: #fff;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 .fz-14 {
   font-size: 14px;
@@ -106,9 +112,23 @@ img {
   display: inline-block;
 }
 
-blockquote {
-  border-left: 2px solid #ffff;
-  padding: 8px 16px;
-  margin: 8px 0;
-  background: rgba(255, 255, 255, 0.04);
+.remark-slide-content.full-page-image {
+  padding: 0 !important;
+  vertical-align: middle;
+  background: #fff;
+}
+.remark-slide-content.full-page-image .remark-slide-number {
+  color: #444444;
+}
+.remark-slide-content.full-page-image img {
+  display: block;
+  margin: 0 auto;
+}
+.links-list {
+  display: block;
+  padding-left: 30px;
+  margin-bottom: 18px;
+}
+.links-list a {
+  display: list-item;
 }
