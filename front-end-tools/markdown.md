@@ -1,6 +1,6 @@
 class: center, middle
 
-## Typescript Fundamentals
+## Frontend Tools
 
 _By: Vahid Mohammadi_
 
@@ -16,15 +16,15 @@ _By: Vahid Mohammadi_
     <a href="https://prettier.io/docs/en/ignore.html">Prettier Ignore</a>
 </div>
 
--   babel
--   browserlist
--   gulp
--   webpack
--   jekyll
--   gatsby
--   prettier
--   netlify
--   linters
--   postcss
--   uglify
--   npm yarn
+- babel
+- browserlist
+- gulp
+- webpack
+- jekyll
+- gatsby
+- prettier
+- netlify
+- linters
+- postcss
+- uglify
+- npm yarn
