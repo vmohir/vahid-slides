@@ -10,9 +10,30 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../slides-style-v2.css" />
+    <link rel="stylesheet" href="termynal.css" />
   </head>
 
-  <body onload="var slideshow = remark.create({sourceUrl: 'markdown.md'});">
+  <body>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+    <script>
+      var slideshow = remark.create({
+        sourceUrl: 'markdown.md',
+        highlightLanguage: 'bash',
+        highlightLines: true,
+        highlightStyle: 'ir-black',
+      });
+    </script>
+    <script src="termynal.js"></script>
+    <script>
+      var termynal = Array.from(new Array(2), (_, i) => i)
+        .reduce((res, t) => `${res}|#t${t}`, '')
+        .substr(1);
+      slideshow.on('showSlide', function() {
+        termynal.split('|').forEach(container => {
+          if (document.querySelector(container)) new Termynal(container);
+        });
+      });
+    </script>
+    <script src="highlight.pack.js"></script>
   </body>
 </html>
