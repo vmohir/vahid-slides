@@ -24,9 +24,9 @@ Get `index`, `first`, `last`, `even`, `odd` of current element
 
 ### When are changes propagated to the DOM?
 
--   When an element is added to the array
--   When an element is removed from the array
--   When items are reordered
+- When an element is added to the array
+- When an element is removed from the array
+- When items are reordered
 
 ### Optimizing \*ngFor
 
@@ -45,14 +45,15 @@ You can use `keyvalue` pipe
 <div class="doc-link">
     <a href="https://ultimatecourses.com/blog/angular-ngif-else-then">*ngIf Everything</a>
     <a href="https://alligator.io/angular/ngif-new-features-angular4/">*ngIf Other Features</a>
+    <a href="https://angular.io/guide/template-syntax#the-safe-navigation-operator----and-null-property-paths">Safe Navigation</a>
 </div>
 
--   Try not to call functions!
-    -   Performance
-    -   It may not detect changes
--   `else` and `then else`
--   Create scoped variables with `*ngIf`
--   `*ngIf` vs `[hidden]`: \*ngFor is for null check but [hidden] is not. You can also use `?.`
+- Try not to call functions!
+  - Performance
+  - It may not detect changes
+- `else` and `then else`
+- Create scoped variables with `*ngIf`
+- `*ngIf` vs `[hidden]`: \*ngIf is for null check but [hidden] is not. You can also use `?.` and `!.` in Angular template files
 
 ---
 
@@ -66,22 +67,22 @@ You can use `keyvalue` pipe
     <a href="https://netbasal.com/angular-2-take-advantage-of-the-exportas-property-81374ce24d26">Directive exportAs</a>
 </div>
 
--   use `*` directives without creating an element (ex. `<tr>`)
--   use multiple `*` directives
--   display `ng-templates`
--   dispaly dynamic components
-    -   How can we have `@Input()`s? [Use custom injectors](https://stackoverflow.com/questions/42056828/pass-an-input-value-into-a-ngcomponentoutlet-created-component)
+- use `*` directives without creating an element (ex. `<tr>`)
+- use multiple `*` directives
+- display `ng-templates`
+- dispaly dynamic components
+  - How can we have `@Input()`s? [Use custom injectors](https://stackoverflow.com/questions/42056828/pass-an-input-value-into-a-ngcomponentoutlet-created-component)
 
 > Being “virtual” means the <ng-template> contents won’t actually exist in the compiled DOM
 
 ### ng-content
 
--   selector can be `tag`, `[attribute]` or `.css-class`
+- selector can be `tag`, `[attribute]` or `.css-class`
 
 ### View & Content Children
 
--   `@ViewChild()` and `@ViewChildren()`
--   `@ContentChild()` and `@ContentChildren()`
+- `@ViewChild()` and `@ViewChildren()`
+- `@ContentChild()` and `@ContentChildren()`
 
 ### Directives exportAs
 

@@ -10,23 +10,27 @@ _By: Vahid Mohammadi_
 
 ---
 
+<div class="doc-link">
+    <a href="https://scotch.io/tutorials/angular-2-classes-with-ngclass-and-ngstyle">NgClass & NgStyle</a>
+</div>
+
 ### NgClass
 
--   `class` & `[class]`
--   `[class.{className}]`
--   `[ngClass]`
-    -   string
-        -   ternary operator
-    -   array of strings
-    -   object: `{ [string]: boolean }`
+- `class` & `[class]`
+- `[class.{className}]`
+- `[ngClass]`
+  - string
+    - ternary operator
+  - array of strings
+  - object: `{ [string]: boolean }`
 
 ### NgStyle
 
--   `style` & `[style]`
--   `[style.{cssProperty}.{Unit}]`
-    -   Unit can be any of CSS Units: `px`, `%`, `em`, etc.
--   `[ngStyle]`
-    -   object: `{ [{cssProperty}.{Unit}]: {value} }`
+- `style` & `[style]`
+- `[style.{cssProperty}.{Unit}]`
+  - Unit can be any of CSS Units: `px`, `%`, `em`, etc.
+- `[ngStyle]`
+  - object: `{ [{cssProperty}.{Unit}]: {value} }`
 
 ---
 
@@ -37,31 +41,31 @@ _By: Vahid Mohammadi_
     <a href="https://medium.com/@tomsu/typescript-tips-tricks-c8fdef998d50#73d6">Typescript Html Dom Types</a>
     <a href="https://angular.io/guide/attribute-directives">Angular Directives</a>
     <a href="https://angular.io/guide/component-styles#special-selectors">Special CSS Selectors</a>
-    <a href="https://angular.io/guide/attribute-directives#pass-values-into-the-directive-with-an-input-data-binding">Special CSS Selectors</a>
+    <a href="https://angular.io/guide/attribute-directives#pass-values-into-the-directive-with-an-input-data-binding">Directive Inputs</a>
     <a href="https://angular.io/guide/pipes">Angular Pipes</a>
 </div>
 
 ### DOM Manipulation
 
--   `@HostListener`
-    -   Angular pseudo-events
--   `@HostBinding`
--   `ElementRef<T>` & `TemplateRef<T>`
-    -   `HTML{WHATEVER}Element` types
--   Try not to work manipulate DOM with pure JS
--   CSS `host` and `host-context` selectors
--   `@Input` & `@Output`
+- `@HostListener`
+  - Angular pseudo-events
+- `@HostBinding`
+- `ElementRef<T>` & `TemplateRef<T>`
+  - `HTML{WHATEVER}Element` types
+- Try not to work manipulate DOM with pure JS
+- CSS `host` and `host-context` selectors
+- `@Input` & `@Output`
 
 ### Directives
 
--   Creating custom directives
--   `selector`
--   `exportAs`
+- Creating custom directives
+- `selector`
+- `exportAs`
 
 ### Pipes
 
--   Built-in pipes
--   Creating custom pipes
+- Built-in pipes
+- Creating custom pipes
 
 ---
 
@@ -79,16 +83,16 @@ _By: Vahid Mohammadi_
 
 ## Dependency Injection & Providers
 
--   Dependency Injection
--   Injector
-    -   Getting a Module Injector
--   Provider
-    -   InjectionToken
-    -   Factory & Provider Depenedencies
--   Injectable
--   Services
--   `@Inject` & `@Optional`
--   `Component.providers` & `Component.viewProviders`
+- Dependency Injection
+- Injector
+  - Getting a Module Injector
+- Provider
+  - InjectionToken
+  - Factory & Provider Depenedencies
+- Injectable
+- Services
+- `@Inject` & `@Optional`
+- `Component.providers` & `Component.viewProviders`
 
 ---
 
@@ -102,12 +106,12 @@ _By: Vahid Mohammadi_
 
 ### Angular Configurations
 
--   angular.json configurations
-    -   assets, styles, scripts
-    -   stylePreprocessorOptions
-    -   schematics
-    -   prefix
-    -   environments
+- angular.json configurations
+  - assets, styles, scripts
+  - stylePreprocessorOptions
+  - schematics
+  - prefix
+  - environments
 
 ### Project Architecture
 

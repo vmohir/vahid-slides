@@ -15,16 +15,15 @@ _By: Vahid Mohammadi_
 <div class="doc-link">
     <a href="https://devdocs.io/javascript/">DevDocs JavaScript</a>
     <a href="https://devhints.io/es6">ES6 Docs</a>
-    <a href="https://www.learnrxjs.io">LearnRxJS</a>
 </div>
 
 ## Some JavaScript Tips
 
--   Don't use `var`. Use `const` or `let` instead
--   Use Array methods: `forEach`, `map`, `reduce`, `filter`, `slice`, `find`, `findIndex`, `includes`, `some`, `every`
--   Mutation
--   Use backticks
--   Use Destructing
+- Don't use `var`. Use `const` or `let` instead
+- Use array methods: `forEach`, `map`, `reduce`, `filter`, `slice`, `find`, `findIndex`, `includes`, `some`, `every`
+- Mutation
+- Use backticks
+- Use destructing
 
 ---
 
@@ -37,16 +36,16 @@ _By: Vahid Mohammadi_
 
 Things to note:
 
--   `npm i typescript` and `tsc` command
--   Configuration: `tsconfig.json`
-    -   `files`, `include`, `exclude`
-    -   `extends`
-    -   CompilerOptions:
-        -   `baseUrl`
-        -   `paths`
-        -   `strict` flags
-        -   `noUnusedLocals`
-        -   `noUnusedParameters`
+- `npm i typescript` and `tsc` command
+- Configuration: `tsconfig.json`
+  - `files`, `include`, `exclude`
+  - `extends`
+  - CompilerOptions:
+    - `baseUrl`
+    - `paths`
+    - `strict` flags
+    - `noUnusedLocals`
+    - `noUnusedParameters`
 
 ---
 
@@ -57,15 +56,15 @@ Things to note:
     <a href="http://www.typescriptlang.org/docs/handbook/interfaces.html">Interfaces Docs</a>
 </div>
 
--   `boolean`, `number`, `string`
--   `any`, `never`, `void`
--   `null`, `undefined`
--   array, [Interface](http://www.typescriptlang.org/docs/handbook/interfaces.html)
--   [Index signature](http://www.typescriptlang.org/docs/handbook/interfaces.html#indexable-types)
--   [Functions](http://www.typescriptlang.org/docs/handbook/interfaces.html#function-types)
--   Casting
--   [Enums](http://www.typescriptlang.org/docs/handbook/enums.html)
--   Unions
+- `boolean`, `number`, `string`
+- `any`, `never`, `void`
+- `null`, `undefined`
+- array, [Interface](http://www.typescriptlang.org/docs/handbook/interfaces.html)
+- [Index signature](http://www.typescriptlang.org/docs/handbook/interfaces.html#indexable-types)
+- [Functions](http://www.typescriptlang.org/docs/handbook/interfaces.html#function-types)
+- Casting
+- [Enums](http://www.typescriptlang.org/docs/handbook/enums.html)
+- Unions
 
 ---
 
@@ -75,9 +74,9 @@ Things to note:
     <a href="http://www.typescriptlang.org/docs/handbook/generics.html">Generics Docs</a>
 </div>
 
--   Makes types, interfaces, functions and class generic
--   default type: `function func<T = string>(arg: T): T {}`
--   `extends` type: `function func<T extends any[]>(arg: T) {}`
+- Makes types, interfaces, functions and class generic
+- default type: `function func<T = string>(arg: T): T {}`
+- `extends` type: `function func<T extends any[]>(arg: T) {}`
 
 ---
 
@@ -92,7 +91,6 @@ Things to note:
     <a href="http://codelyzer.com/">Codelyzer</a>
 </div>
 
--   `tslint.json` and `.eslintrc` configuration files
--   IDE extentions
--   `ng lint` in Angular
--   Codelyzer
+- `tslint.json` and `.eslintrc` configuration files
+- IDE extentions: Install eslint and tslint extension
+- Codelyzer
