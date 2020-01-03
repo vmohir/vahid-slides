@@ -28,13 +28,12 @@ class Termynal {
    * @param {boolean} options.noInit - Don't initialise the animation.
    */
   constructor(container = '#termynal', options = {}) {
-    console.log('TCL: Termynal -> constructor -> container', container);
     this.container = typeof container === 'string' ? document.querySelector(container) : container;
     if (!this.container) return;
     this.pfx = `data-${options.prefix || 'ty'}`;
-    this.startDelay = options.startDelay || parseFloat(this.container.getAttribute(`${this.pfx}-startDelay`)) || 600;
-    this.typeDelay = options.typeDelay || parseFloat(this.container.getAttribute(`${this.pfx}-typeDelay`)) || 90;
-    this.lineDelay = options.lineDelay || parseFloat(this.container.getAttribute(`${this.pfx}-lineDelay`)) || 1500;
+    this.startDelay = parseFloat(this.container.getAttribute(`${this.pfx}-startDelay`)) || options.startDelay || 600;
+    this.typeDelay = parseFloat(this.container.getAttribute(`${this.pfx}-typeDelay`)) || options.typeDelay || 90;
+    this.lineDelay = parseFloat(this.container.getAttribute(`${this.pfx}-lineDelay`)) || options.lineDelay || 1500;
     this.progressLength = options.progressLength || parseFloat(this.container.getAttribute(`${this.pfx}-progressLength`)) || 40;
     this.progressChar = options.progressChar || this.container.getAttribute(`${this.pfx}-progressChar`) || '█';
     this.progressPercent = options.progressPercent || parseFloat(this.container.getAttribute(`${this.pfx}-progressPercent`)) || 100;
@@ -88,6 +87,8 @@ class Termynal {
 
       line.removeAttribute(`${this.pfx}-cursor`);
     }
+
+    this.container.classList.add('termynal-finished');
   }
 
   /**
@@ -95,7 +96,6 @@ class Termynal {
    * @param {Node} line - The line element to render.
    */
   async type(line) {
-    console.log('TCL: type -> line', line);
     // const chars = [...line.textContent];
     // const delay = line.getAttribute(`${this.pfx}-typeDelay`) || this.typeDelay;
     // line.textContent = '';

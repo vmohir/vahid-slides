@@ -23,17 +23,27 @@
         highlightStyle: 'ir-black',
       });
     </script>
-    <script src="termynal.js"></script>
+    <script src="highlight.pack.js"></script>
+    <!-- <script src="termynal.js"></script> -->
     <script>
-      var termynal = Array.from(new Array(2), (_, i) => i)
-        .reduce((res, t) => `${res}|#t${t}`, '')
-        .substr(1);
-      slideshow.on('showSlide', function() {
-        termynal.split('|').forEach(container => {
-          if (document.querySelector(container)) new Termynal(container);
+      setTimeout(() => {
+        var x = Array.from(document.querySelectorAll('[data-termynal] [data-ty="input"]'));
+        x.forEach(t => {
+          console.log('TCL: t', t);
+          hljs.highlightBlock(t);
         });
       });
+      //   slideshow.on('showSlide', function(e) {
+      // setTimeout(() => {
+      //   //   console.log('TCL: Array.from(document.', Array.from(document.querySelectorAll('.remark-slide-container.remark-visible')));
+      //   //   Array.from(document.querySelectorAll('.remark-slide-container.remark-visible [data-termynal]'))
+      //   console.log('TCL: x', x);
+      //   x.filter(item => !item.classList.contains('termynal-finished')).forEach(container => {
+      //     console.log('TCL: container', container);
+      //     new Termynal(container, { lineDelay: 700 });
+      //   });
+      // });
+      //   });
     </script>
-    <script src="highlight.pack.js"></script>
   </body>
 </html>
