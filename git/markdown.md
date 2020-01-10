@@ -49,6 +49,50 @@ Creates `.git` folder
 
 ---
 
+## Branch
+
+<div data-termynal>
+<div data-ty="input">
+    <code class="language-bash">git checkout -b other-branch</code>
+</div>
+<div data-ty="input">
+    <code class="language-bash">git branch</code>
+</div>
+<pre data-ty>
+  master
+* <span class="c-green">other-branch</span>
+</pre>
+</div>
+
+After changing some files, let's push them into origin/other-branch
+
+<div data-termynal>
+<div data-ty="input">
+    <code class="language-bash"><div class="has-desc"><span>git push <span class="c-blue">-u</span> origin other-branch</span><span class="c-blue"><- `-u` will connect the local branch with the remote branch</span></div></code>
+</div>
+<div data-ty="input">
+    <code class="language-bash">git checkout master</code>
+</div>
+<div data-ty="input">
+    <code class="language-bash">git branch</code>
+</div>
+<pre data-ty>
+* <span class="c-green">master</span>
+  other-branch
+</pre>
+<div data-ty="input">
+    <code class="language-bash">git merge other-branch</code>
+</div>
+<div data-ty="input">
+<code class="language-bash"><div class="has-desc"><span>git branch -d other-branch</span><span class="c-blue"><- Deletes the local branch</span></div></code>
+</div>
+<div data-ty="input">
+<code class="language-bash"><div class="has-desc"><span>git push origin --delete other-branch</span><span class="c-blue"><- Deletes the remote branch</span></div></code>
+</div>
+</div>
+
+---
+
 ## Remote
 
 <div data-termynal data-ty-lineDelay="1000">
@@ -135,9 +179,9 @@ ref: refs/heads/master
 
 ### Reflog
 
-Every action you perform inside of Git where data is stored, you can find it inside of the reflog.
+Every action you perform inside of Git where data is stored, you can find it in reflog.
 
-Options are same is `git log`
+Options are same as `git log`
 
 <div data-termynal>
 <div data-ty="input">
@@ -321,7 +365,7 @@ There are 3 kinds of reset:
 </pre>
 
 <div data-ty="input">
-    <code class="language-bash">git <span class="c-green">clean</span></code>
+    <code class="language-bash"><div class="has-desc"><span>git clean -df</span><span class="c-blue"><- `-d` will also delete untracked directories</span></div></code>
 </div>
 <div data-ty="input">
     <code class="language-bash">git status</code>
@@ -368,7 +412,7 @@ Now the commit is copied, we should go back and remove the wrong commit.
 </div>
 </div>
 
-<!-- tags -->
+<!-- tags & diff & stash -->
 
 ---
 
@@ -392,6 +436,9 @@ Now the commit is copied, we should go back and remove the wrong commit.
 <div data-ty="input">
 <code class="language-bash"><div class="has-desc"><span>git config --global status.short true</span><span class="c-yellow"><- `git status` short mode</span></div></code>
     <code class="language-bash"></code>
+</div>
+<div data-ty="input">
+    <code class="language-bash">git config --global clean.requireForce false</code>
 </div>
 <div data-ty="input">
     <code class="language-bash">git config --list # List all configs</code>
