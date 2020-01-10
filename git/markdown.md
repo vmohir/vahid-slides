@@ -414,16 +414,16 @@ Now the commit is copied, we should go back and remove the wrong commit.
 
 ---
 
-## Undo anything
+## Undo Almost Anything
 
 Move a commit to another branch
 
 <div data-termynal>
 <div data-ty="input">
-    <code class="language-bash">git status</code>
+    <code class="language-bash">git log</code>
 </div>
 <pre data-ty>
-<span class="c-red">M</span> file.txt
+<span class="c-yellow">fbe82b2</span> <span class="c-green">(HEAD -> master)</span> test
 </pre>
 <div data-ty="input">
 <code class="language-bash"><div class="has-desc"><span>git reset --hard origin/master</span><span class="c-blue"><- We accidentally removed file.txt</span></div></code>
@@ -432,36 +432,26 @@ Move a commit to another branch
     <code class="language-bash">git reflog</code>
 </div>
 <pre data-ty>
-<span class="c-yellow">80827b2</span> HEAD@{0}: 
-<span class="c-yellow">acfbec6</span> older commit
+<span class="c-yellow">80827b2</span> HEAD@{0}: reset: moving to origin/master
+<span class="c-yellow">acfbec6</span> HEAD@{0}: commit: test
 </pre>
 <div data-ty="input">
-  <code class="language-bash">git branch</code>
-</div>
-<pre data-ty>
-* <span class="c-green">master</span>
-  dest-branch
-</pre>
-<div data-ty="input">
-  <code class="language-bash">git checkout <span class="c-yellow">dest-branch</span></code>
-</div>
-<div data-ty="input">
-  <code class="language-bash"><div class="has-desc"><span>git <span class="c-blue">cherry-pick</span> 80827b2</span><span class="c-blue"><- Copy the commit to current branch</span></div></code>
+  <code class="language-bash">git checkout 80827b2</code>
 </div>
 </div>
 
-Now the commit is copied, we should go back and remove the wrong commit.
+Now we are in a detached state
 
 <div data-termynal>
 <div data-ty="input">
-  <code class="language-bash">git checkout master</code>
-</div>
-<div data-ty="input">
-  <code class="language-bash">git reset --hard origin/master</code>
+<code class="language-bash"><div class="has-desc"><span>git checkout -b backup-from-reflog</span><span class="c-blue"><- Create a branch from the detached state</span></div></code>
+  <code class="language-bash"></code>
 </div>
 </div>
 
-<!-- tags & diff & stash -->
+Now we can merge the `backup-from-reflog` branch into the `master` branch
+
+<!-- revert & rebase & tags & diff & stash -->
 
 ---
 
