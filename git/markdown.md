@@ -451,7 +451,9 @@ Now we are in a detached state
 
 Now we can merge the `backup-from-reflog` branch into the `master` branch
 
-<!-- revert & rebase & tags & diff & stash -->
+<!-- revert & rebase & tags & diff & stash
+https://dev.to/jacobherrington/git-rebase-explained-simply-k0a
+ -->
 
 ---
 
