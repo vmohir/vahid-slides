@@ -106,6 +106,10 @@ pre {
 .c-yellow * {
   color: #ffe59e !important;
 }
+.c-purple,
+.c-purple * {
+  color: #c6c5fe !important;
+}
 
 .has-desc {
   display: inline-flex;

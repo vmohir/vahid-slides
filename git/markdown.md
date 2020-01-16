@@ -10,17 +10,17 @@ _By: Vahid Mohammadi_
 
 ---
 
-# Install the latest version of git
+## Install the latest version of git
 
 <div data-termynal>
 <div data-ty="input">
-    <code class="language-bash">git --version</code>
+    <code class="language-bash">git <span class="c-yellow">--version</span></code>
 </div>
 <pre data-ty>
 git version 2.17.1
 </pre>
 <div data-ty="input">
-    <code class="language-bash">sudo apt-add-repository ppa:git-core/ppa -y</code>
+    <code class="language-bash">sudo apt-add-repository <span class="c-green">ppa:git-core/ppa</span> -y</code>
 </div>
 <div data-ty="input">
     <code class="language-bash">sudo apt update</code>
@@ -29,10 +29,10 @@ git version 2.17.1
     <code class="language-bash">sudo apt install -y git</code>
 </div>
 <div data-ty="input">
-    <code class="language-bash">git --version</code>
+    <code class="language-bash">git <span class="c-yellow">--version</span></code>
 </div>
 <pre data-ty>
-git version 2.25.0
+git version <span class="c-green">2.25.0</span>
 </pre>
 </div>
 
@@ -81,7 +81,7 @@ Creates `.git` folder
 
 <div data-termynal>
 <div data-ty="input">
-    <code class="language-bash">git checkout -b other-branch</code>
+    <code class="language-bash">git checkout <span class="c-green">-b</span> <span class="c-purple">other-branch</span></code>
 </div>
 <div data-ty="input">
     <code class="language-bash">git branch</code>
@@ -96,10 +96,10 @@ After changing some files, let's push them into origin/other-branch
 
 <div data-termynal>
 <div data-ty="input">
-    <code class="language-bash"><div class="has-desc"><span>git push <span class="c-blue">-u</span> origin other-branch</span><span class="c-blue"><- `-u` will connect the local branch with the remote branch</span></div></code>
+    <code class="language-bash"><div class="has-desc"><span>git push <span class="c-blue">-u</span> origin <span class="c-purple">other-branch</span></span><span class="c-blue"><- `-u` will connect the local branch with the remote branch</span></div></code>
 </div>
 <div data-ty="input">
-    <code class="language-bash">git checkout master</code>
+    <code class="language-bash">git checkout <span class="c-purple">master</span></code>
 </div>
 <div data-ty="input">
     <code class="language-bash">git branch</code>
@@ -109,13 +109,13 @@ After changing some files, let's push them into origin/other-branch
   other-branch
 </pre>
 <div data-ty="input">
-    <code class="language-bash">git merge other-branch</code>
+    <code class="language-bash">git merge <span class="c-purple">other-branch</span></code>
 </div>
 <div data-ty="input">
-<code class="language-bash"><div class="has-desc"><span>git branch -d other-branch</span><span class="c-blue"><- Deletes the local branch</span></div></code>
+<code class="language-bash"><div class="has-desc"><span>git branch <span class="c-red">-d</span> <span class="c-purple">other-branch</span></span><span class="c-blue"><- Deletes the local branch</span></div></code>
 </div>
 <div data-ty="input">
-<code class="language-bash"><div class="has-desc"><span>git push origin --delete other-branch</span><span class="c-blue"><- Deletes the remote branch</span></div></code>
+<code class="language-bash"><div class="has-desc"><span>git push origin <span class="c-red">--delete</span> <span class="c-purple">other-branch</span></span><span class="c-blue"><- Deletes the remote branch</span></div></code>
 </div>
 </div>
 
@@ -131,7 +131,7 @@ After changing some files, let's push them into origin/other-branch
 origin  https://github.com/gvmohzibat/vahid-slides.git
 </pre>
 <div data-ty="input">
-    <code class="language-bash">git remote <span class="c-blue">add</span> gitlab-repo https://gitlab.com/vmohir/vahid-slides.git</code>
+    <code class="language-bash">git remote <span class="c-blue">add</span> gitlab-repo <span class="c-purple">https://gitlab.com/vmohir/vahid-slides.git</span></code>
 </div>
 <div data-ty="input">
     <code class="language-bash">git remote update</code>
@@ -180,7 +180,7 @@ ref: refs/heads/master
     <code class="language-bash">git status</code>
 </div>
 <div data-ty="input">
-    <code class="language-bash"><div class="has-desc"><span>git status -s</span><span class="c-blue"><- short output</span></div></code>
+    <code class="language-bash"><div class="has-desc"><span>git status <span class="c-green">-s</span></span><span class="c-blue"><- short output</span></div></code>
 </div>
 </div>
 
@@ -190,16 +190,16 @@ ref: refs/heads/master
 
 <div data-termynal>
 <div data-ty="input">
-    <code class="language-bash"><div class="has-desc"><span>git log --oneline</span><span class="c-blue"><- Log commits each in one line</span></div></code>
+    <code class="language-bash"><div class="has-desc"><span>git log <span class="c-purple">--oneline</span></span><span class="c-blue"><- Log commits each in one line</span></div></code>
 </div>
 <div data-ty="input">
-    <code class="language-bash"><div class="has-desc"><span>git log --no-merges</span><span class="c-blue"><- Hide merges</span></div></code>
+    <code class="language-bash"><div class="has-desc"><span>git log <span class="c-purple">--no-merges</span></span><span class="c-blue"><- Hide merges</span></div></code>
 </div>
 <div data-ty="input">
-    <code class="language-bash"><div class="has-desc"><span>git log {branch}</span><span class="c-blue"><- Log commits of one branch</span></div></code>
+    <code class="language-bash"><div class="has-desc"><span>git log <span class="c-purple">{branch}</span></span><span class="c-blue"><- Log commits of one branch</span></div></code>
 </div>
 <div data-ty="input">
-    <code class="language-bash"><div class="has-desc"><span>git log --stat</span><span class="c-blue"><- Show file changes</span></div></code>
+    <code class="language-bash"><div class="has-desc"><span>git log <span class="c-purple">--stat</span></span><span class="c-blue"><- Show file changes</span></div></code>
 </div>
 </div>
 
@@ -462,10 +462,10 @@ Now the commit is copied, we should go back and remove the wrong commit.
 
 <div data-termynal>
 <div data-ty="input">
-  <code class="language-bash">git checkout master</code>
+  <code class="language-bash">git checkout <span class="c-purple">master</span></code>
 </div>
 <div data-ty="input">
-  <code class="language-bash">git reset --hard origin/master</code>
+  <code class="language-bash">git reset --hard <span class="c-purple">origin/master</span></code>
 </div>
 </div>
 
@@ -501,7 +501,7 @@ Now we are in a detached state
 
 <div data-termynal>
 <div data-ty="input">
-<code class="language-bash"><div class="has-desc"><span>git checkout -b backup-from-reflog</span><span class="c-blue"><- Create a branch from the detached state</span></div></code>
+<code class="language-bash"><div class="has-desc"><span>git checkout -b <span class="c-purple">backup-from-reflog</span></span><span class="c-blue"><- Create a branch from the detached state</span></div></code>
 </div>
 </div>
 
@@ -531,7 +531,7 @@ Stash is a "Stack" structure for temporary cutting and pasting changes. For exam
 <code class="language-bash"><div class="has-desc"><span>git stash -u</span><span class="c-blue"><- `-u` is for "Untracked files"</span></div></code>
 </div>
 <div data-ty="input">
-  <code class="language-bash">git checkout other-branch</code>
+  <code class="language-bash">git checkout <span class="c-purple">other-branch</span></code>
 </div>
 <div data-ty="input">
   <code class="language-bash">git stash pop</code>
@@ -564,15 +564,33 @@ stash@{<span class="c-green">1</span>}: WIP on master: <span class="c-yellow">66
 </div>
 </div>
 
-<!-- rebase & tags & diff & stash
-https://dev.to/jacobherrington/git-rebase-explained-simply-k0a
- -->
+---
+
+## Tags
+
+<div data-termynal>
+<div data-ty="input">
+  <code class="language-bash"><div class="has-desc"><span>git tag v1.0.0</span><span class="c-blue"><- Tag current commit</span></div></code>
+</div>
+<div data-ty="input">
+  <code class="language-bash"><div class="has-desc"><span>git tag v1.0.0 -m "Message"</span><span class="c-blue"><- annotates the tag with a message</span></div></code>
+</div>
+<div data-ty="input">
+  <code class="language-bash">git push --tags</code>
+</div>
+</div>
+
+Now you can see tags in the "Branches" dropdown:
+
+![Git tags](./images/gitlab-tags.png)
 
 ---
 
-### Config
+## Config
 
-<div data-termynal data-ty-typeDelay="40" data-ty-lineDelay="1000">
+#### Useful configs
+
+<div data-termynal>
 <div data-ty="input">
     <code class="language-bash">git config --global user.name "Vahid Mohammadi"</code>
 </div>
@@ -580,22 +598,41 @@ https://dev.to/jacobherrington/git-rebase-explained-simply-k0a
     <code class="language-bash">git config --global user.email "email@ex.com"</code>
 </div>
 <div data-ty="input">
-<code class="language-bash"><div class="has-desc"><span>git config --global credentials.helper store</span><span class="c-yellow"><- Store username & password in <span class="no-break">~/.git-credentials</span></span></div></code>
-    <code class="language-bash"></code>
+<code class="language-bash"><div class="has-desc"><span>git config --global credentials.helper <span class="c-purple">store</span></span><span class="c-yellow"><- Store username & password in <span class="no-break">~/.git-credentials</span></span></div></code>
 </div>
 <div data-ty="input">
 <code class="language-bash"><div class="has-desc"><span>git config --global log.abbrevCommit true</span><span class="c-yellow"><- `git log` shows short hashes</span></div></code>
-    <code class="language-bash"></code>
 </div>
 <div data-ty="input">
 <code class="language-bash"><div class="has-desc"><span>git config --global status.short true</span><span class="c-yellow"><- `git status` short mode</span></div></code>
-    <code class="language-bash"></code>
 </div>
 <div data-ty="input">
     <code class="language-bash">git config --global clean.requireForce false</code>
 </div>
 <div data-ty="input">
-    <code class="language-bash">git config --list # List all configs</code>
+    <code class="language-bash">git config --global http.proxy 'http://username:password@server.com:port'</code>
+</div>
+<div data-ty="input">
+    <code class="language-bash">git config --global http.proxy 'socks5://server.com:port'</code>
+</div>
+</div>
+
+#### Aliases
+
+<div data-termynal>
+<div data-ty="input">
+    <code class="language-bash">git config --global <span class="c-blue">alias</span>.<span class="c-green">st</span> status</code>
+</div>
+</div>
+
+#### Unset and List
+
+<div data-termynal>
+<div data-ty="input">
+<code class="language-bash"><div class="has-desc"><span>git config --global <span class="c-red">--unset</span> http.proxy</span><span class="c-yellow"><- use `--unset` to clear a config</span></div></code>
+</div>
+<div data-ty="input">
+    <code class="language-bash">git config <span class="c-blue">--list</span> # List all configs</code>
 </div>
 </div>
 
