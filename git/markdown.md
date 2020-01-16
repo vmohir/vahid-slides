@@ -10,6 +10,34 @@ _By: Vahid Mohammadi_
 
 ---
 
+# Install the latest version of git
+
+<div data-termynal>
+<div data-ty="input">
+    <code class="language-bash">git --version</code>
+</div>
+<pre data-ty>
+git version 2.17.1
+</pre>
+<div data-ty="input">
+    <code class="language-bash">sudo apt-add-repository ppa:git-core/ppa -y</code>
+</div>
+<div data-ty="input">
+    <code class="language-bash">sudo apt update</code>
+</div>
+<div data-ty="input">
+    <code class="language-bash">sudo apt install -y git</code>
+</div>
+<div data-ty="input">
+    <code class="language-bash">git --version</code>
+</div>
+<pre data-ty>
+git version 2.25.0
+</pre>
+</div>
+
+---
+
 <div class="doc-link">
     <a href="https://stackoverflow.com/a/292359/1889607">Fetch vs Pull</a>
 </div>
@@ -474,11 +502,67 @@ Now we are in a detached state
 <div data-termynal>
 <div data-ty="input">
 <code class="language-bash"><div class="has-desc"><span>git checkout -b backup-from-reflog</span><span class="c-blue"><- Create a branch from the detached state</span></div></code>
-  <code class="language-bash"></code>
 </div>
 </div>
 
 Now we can merge the `backup-from-reflog` branch into the `master` branch
+
+---
+
+class: center, middle
+
+# Other git commands
+
+---
+
+## Stash
+
+Stash is a "Stack" structure for temporary cutting and pasting changes. For example you've made some changes and you understand you're in a wrong branch:
+
+<div data-termynal>
+<div data-ty="input">
+  <code class="language-bash">git status</code>
+</div>
+<pre data-ty>
+ <span class="c-red">M</span> file.txt
+<div class="d-inline-flex w-100 justify-content-between"><span><span class="c-red">??</span> untracked.txt</span><span class="c-blue"><- This file is untracked by git (It's just created)</span></div>
+</pre>
+<div data-ty="input">
+<code class="language-bash"><div class="has-desc"><span>git stash -u</span><span class="c-blue"><- `-u` is for "Untracked files"</span></div></code>
+</div>
+<div data-ty="input">
+  <code class="language-bash">git checkout other-branch</code>
+</div>
+<div data-ty="input">
+  <code class="language-bash">git stash pop</code>
+</div>
+</div>
+
+Now the changes are in "other-branch"
+
+#### Other stash commands:
+
+<div data-termynal>
+<div data-ty="input">
+    <code class="language-bash"><div class="has-desc"><span>git stash list</span><span class="c-blue"><- shows all changes that are stashed</span></div></code>
+</div>
+<pre>
+stash@{<span class="c-green">0</span>}: WIP on master: <span class="c-yellow">47ee12d1</span> COMMIT_MESSAGE
+stash@{<span class="c-green">1</span>}: WIP on master: <span class="c-yellow">6671dgn3</span> OTHER_COMMIT_MESSAGE
+</pre>
+<div data-ty="input">
+    <code class="language-bash"><div class="has-desc"><span>git stash save "name"</span><span class="c-blue"><- Stash with a name</span></div></code>
+</div>
+<div data-ty="input">
+    <code class="language-bash"><div class="has-desc"><span>git stash drop stash@{1}</span><span class="c-blue"><- Gets rid of a stash</span></div></code>
+</div>
+<div data-ty="input">
+    <code class="language-bash"><div class="has-desc"><span>git stash clear</span><span class="c-blue"><- Gets rid of all stashes</span></div></code>
+</div>
+<div data-ty="input">
+    <code class="language-bash"><div class="has-desc"><span>git stash apply stash@{1}</span><span class="c-blue"><- It applies a stash but it doesn't drop it (unlike pop)</span></div></code>
+</div>
+</div>
 
 <!-- rebase & tags & diff & stash
 https://dev.to/jacobherrington/git-rebase-explained-simply-k0a
