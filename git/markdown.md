@@ -241,6 +241,35 @@ You did a commit and you want to change the **message** or the **staged files**
 
 ---
 
+## Revert
+
+Creates a new commit that reverts an older commit
+
+<div data-termynal>
+<div data-ty="input">
+  <code class="language-bash">git log</code>
+</div>
+<pre data-ty>
+<span class="c-yellow">dskj3bg</span> some commit
+<span class="c-yellow">80827b2</span> unwanted commit
+<span class="c-yellow">acfbec6</span> older commit
+</pre>
+<div data-ty="input">
+  <code class="language-bash">git revert 80827b2</code>
+</div>
+<div data-ty="input">
+  <code class="language-bash">git log</code>
+</div>
+<pre data-ty>
+<span class="c-yellow">42g5471</span> Revert "unwanted commit"
+<span class="c-yellow">dskj3bg</span> some commit
+<span class="c-yellow">80827b2</span> unwanted commit
+<span class="c-yellow">acfbec6</span> older commit
+</pre>
+</div>
+
+---
+
 ## Reset
 
 There are 3 kinds of reset:
@@ -344,7 +373,7 @@ There are 3 kinds of reset:
 
 ## Clean
 
-`git reset --hard` won't get read of **untracked** files.
+`git reset --hard` won't get rid of **untracked** files.
 
 <div data-termynal>
 <div data-ty="input">
@@ -451,7 +480,7 @@ Now we are in a detached state
 
 Now we can merge the `backup-from-reflog` branch into the `master` branch
 
-<!-- revert & rebase & tags & diff & stash
+<!-- rebase & tags & diff & stash
 https://dev.to/jacobherrington/git-rebase-explained-simply-k0a
  -->
 
