@@ -592,28 +592,28 @@ Now you can see tags in the "Branches" dropdown:
 
 <div data-termynal>
 <div data-ty="input">
-    <code class="language-bash">git config --global user.name "Vahid Mohammadi"</code>
+    <code class="language-bash">git config --global <span class="c-purple">user.name</span> "Vahid Mohammadi"</code>
 </div>
 <div data-ty="input">
-    <code class="language-bash">git config --global user.email "email@ex.com"</code>
+    <code class="language-bash">git config --global <span class="c-purple">user.email</span> "email@ex.com"</code>
 </div>
 <div data-ty="input">
-<code class="language-bash"><div class="has-desc"><span>git config --global credentials.helper <span class="c-purple">store</span></span><span class="c-yellow"><- Store username & password in <span class="no-break">~/.git-credentials</span></span></div></code>
+<code class="language-bash"><div class="has-desc"><span>git config --global <span class="c-purple">credentials.helper</span> <span class="c-purple">store</span></span><span class="c-yellow"><- Store username & password in <span class="no-break">~/.git-credentials</span></span></div></code>
 </div>
 <div data-ty="input">
-<code class="language-bash"><div class="has-desc"><span>git config --global log.abbrevCommit true</span><span class="c-yellow"><- `git log` shows short hashes</span></div></code>
+<code class="language-bash"><div class="has-desc"><span>git config --global <span class="c-purple">log.abbrevCommit</span> true</span><span class="c-yellow"><- `git log` shows short hashes</span></div></code>
 </div>
 <div data-ty="input">
-<code class="language-bash"><div class="has-desc"><span>git config --global status.short true</span><span class="c-yellow"><- `git status` short mode</span></div></code>
+<code class="language-bash"><div class="has-desc"><span>git config --global <span class="c-purple">status.short</span> true</span><span class="c-yellow"><- `git status` short mode</span></div></code>
 </div>
 <div data-ty="input">
-    <code class="language-bash">git config --global clean.requireForce false</code>
+<code class="language-bash"><div class="has-desc"><span>git config --global <span class="c-purple">clean.requireForce</span> false</span><span class="c-yellow"><- `-f` is no longer needed for `git clean`</span></div></code>
 </div>
 <div data-ty="input">
-    <code class="language-bash">git config --global http.proxy 'http://username:password@server.com:port'</code>
+    <code class="language-bash">git config --global <span class="c-purple">http.proxy</span> 'http://username:password@server.com:port'</code>
 </div>
 <div data-ty="input">
-    <code class="language-bash">git config --global http.proxy 'socks5://server.com:port'</code>
+    <code class="language-bash">git config --global <span class="c-purple">http.proxy</span> 'socks5://server.com:port'</code>
 </div>
 </div>
 
