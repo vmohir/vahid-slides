@@ -144,7 +144,7 @@ Fetching gitlab-repo
     <code class="language-bash">git branch -a</code>
 </div>
 <pre data-ty>
-<div class="d-inline-flex w-100 justify-content-between"><span>* <span class="c-green">master</span></span><span class="c-blue"><- The star shows HEAD</span></div><span class="c-red">
+<div class="d-inline-flex w-100 justify-content-between"><span>* <span class="c-green">master</span></span><span class="c-blue"><- The star shows the HEAD</span></div><span class="c-red">
   remotes/gitlab-repo/master
   remotes/origin/HEAD -> origin/master
   remotes/origin/master</span>
@@ -158,9 +158,9 @@ Fetching gitlab-repo
 
 #### HEAD
 
-In <span class="c-green">local repo</span>, `HEAD` is the branch to move for new commits.
+In <span class="c-green">local repos</span>, `HEAD` is the branch to move for new commits.
 
-In <span class="c-green">remote repo</span>, `HEAD` is used to tell new clones which branch to use as their local `HEAD` (default branch).
+In <span class="c-green">remote repos</span>, `HEAD` is used to tell new clones which branch to use as their local `HEAD` (default branch).
 
 <div data-termynal>
 <div data-ty="input">
