@@ -27,10 +27,12 @@ body {
 [data-termynal] > *:last-child {
   margin-bottom: 0;
 }
-code {
+[data-termynal] code {
   color: var(--color-text);
   font-family: 'Fira Code', Consolas, Menlo, Monaco, 'Courier New', Courier, monospace;
   font-size: 13px;
+  background: transparent;
+  padding: 0;
 }
 
 pre {

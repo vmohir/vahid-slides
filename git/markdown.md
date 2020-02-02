@@ -636,7 +636,21 @@ Now you can see tags in the "Branches" dropdown:
 </div>
 </div>
 
-<!-- Advancded Configs
-- git commands alias
-- http.proxy
--->
+---
+
+## Git Ignore
+
+Avoid some files to be tracked by git by `.gitignore`.
+
+Prebuilt gitignore files: [gitignore.io](https://gitignore.io/)
+
+### Syntax
+
+- `*` matches any file
+  - `src/folder/*` ignores all files inside `src/folder/`
+- `**` matches any path
+  - `src/**/folder` ignores every subfolder inside `src/`
+  - `src/**/*` ignores all files and folders inside `src/`
+- Comments start with `#`
+- `!` negates the pattern
+  - `!src` Will not ignore `src/`
