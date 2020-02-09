@@ -244,25 +244,17 @@ You did a commit and you want to change the **message** or the **staged files**
 
 <div data-termynal>
 <div data-ty="input">
-  <code class="language-bash">git status</code>
+  <code class="language-bash">git add file-1.txt</code>
 </div>
-<pre data-ty>
-<div class="d-inline-flex w-100 justify-content-between"><span><span class="c-green">M</span>  file-1.txt</span><span class="c-blue"><- file-1 is staged</span></div>
- <span class="c-red">M</span> file-2.txt
-</pre>
+<div data-ty="input">
+  <code class="language-bash">git commit -m 'added file-1</code>
+</div>
 <div data-ty="input">
   <code class="language-bash">git add file-2.txt</code>
 </div>
 <div data-ty="input">
   <code class="language-bash">git commit <span class="c-blue">--amend</span></code>
 </div>
-<div data-ty="input">
-  <code class="language-bash">git status</code>
-</div>
-<pre data-ty>
-<span class="c-green">M</span>  file-1.txt
-<span class="c-green">M</span>  file-2.txt
-</pre>
 </div>
 
 > Don't run amend on commits that you've pushed to remote
