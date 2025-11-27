@@ -1,0 +1,16 @@
+[build]
+publish = "packages/learnings-from-libraries/dist"
+command = "cd packages/learnings-from-libraries && npm run build"
+
+[build.environment]
+NODE_VERSION = "20"
+
+[[redirects]]
+from = "/.well-known/*"
+to = "/.well-known/:splat"
+status = 200
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200

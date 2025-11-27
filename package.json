@@ -1,0 +1,17 @@
+{
+  "name": "vahid-slides",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter learnings-from-libraries dev",
+    "build": "pnpm --filter learnings-from-libraries build",
+    "dev:learnings": "pnpm --filter learnings-from-libraries dev",
+    "build:learnings": "pnpm --filter learnings-from-libraries build"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}
