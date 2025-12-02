@@ -12,7 +12,10 @@
     "dev:learnings": "pnpm --filter learnings-from-libraries dev",
     "build:learnings": "pnpm --filter learnings-from-libraries build"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "oxlint": "^1.30.0",
+    "prettier": "^3.7.1"
+  },
   "engines": {
     "node": ">=20.0.0",
     "pnpm": ">=8.0.0"
