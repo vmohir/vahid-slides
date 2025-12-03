@@ -9,8 +9,9 @@ class: text-center
 # enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
 # duration of the presentation
-duration: 20min
+duration: 10min
 transition: slide-left
+hideInToc: true
 ---
 
 # Creating NPM libraries
@@ -18,18 +19,51 @@ transition: slide-left
 ## Key takeaways
 
 ---
+layout: two-cols
+layoutClass: gap-16
+hideInToc: true
+---
 
-# Two new libraries
+## We use Node daily
+
+TypeScript, Vite, Jest, ESLint, Prettier, etc.
+
+Important to Understand the differences between Node and browser environments.
+
+<v-click>
+```
+my-package/
+├── src/
+├── tsconfig.json
+├── tsconfig.app.json
+└── tsconfig.node.json
+```
+</v-click>
+
+<v-click>
+```json
+{
+    "file": [],
+    "references": [
+        { "path": "./tsconfig.app.json" },
+        { "path": "./tsconfig.node.json" }
+    ]
+}
+```
+</v-click>
+::right::
+
+### **Table of Contents**
+<br>
+
+<Toc text-md minDepth="1" maxDepth="1" listClass="my-toc" />
+
+---
+
+# Two new packages in frontend-libraries
 
 - `@accurx/eslint-plugin`: Custom ESLint rules for Accurx projects.
 - `@accurx/migrate-scan`: A codebase scanning tool to help with large scale migrations.
-
-Here's what I've learned while creating them:
-- `node` supports ESM and TS
-- `vite` library mode
-- `npm link`
-- `vite-plugin-dts`
-- `publint`
 
 ---
 layout: intro
@@ -42,6 +76,7 @@ layout: intro
 
 ---
 layout: two-cols-header
+layoutClass: gap-8
 transition: slide-up
 ---
 
@@ -66,10 +101,9 @@ The environment uses the Node runtime. A fixed Node version is used (unless crea
 
 Access to File System, Path, HTTP modules, etc.
 
-<style> .two-cols-header { column-gap: 1rem; } </style>
-
 ---
 layout: two-cols-header
+layoutClass: gap-8
 transition: slide-up
 ---
 
@@ -78,8 +112,6 @@ transition: slide-up
 ## Browser
 
 <br>
-
-ESM with `<script type="module" />`
 
 ````md magic-move
 ```html
@@ -108,33 +140,34 @@ import './module.js';
 
 <br>
 
-ESM with `.mjs` or `type: "module"` in `package.json`
-
 ````md magic-move
-```sh
-node ./script.cjs
+```js
+$ node ./script.cjs
+---
+let everything = require('./module.cjs');
 ```
-```sh
-node ./script.mjs
+```js
+$ node ./script.mjs
+---
+import { one } from './module.js';
 ```
-```sh
-node ./script.js # with "type": "module"
+```js
+$ node ./script.js // with {"type": "module"}
 ```
-```sh
-node ./script.js # with "type": "module"
+```js
+$ node ./script.js // with {"type": "module"}
 
-# Otherwise node determines the module type
-# based on its content and gives a warning
+// Otherwise node determines the module type
+// based on its content and gives a warning
 ```
-```sh
-node ./script.ts # supports erasable TypeScript
+```js
+$ node ./script.ts // supports erasable TypeScript
 ```
 ````
 
-<style> .two-cols-header { column-gap: 1rem; } </style>
-
 ---
 layout: two-cols-header
+layoutClass: gap-8
 ---
 
 ::left::
@@ -153,21 +186,129 @@ Versions: [nodejs.org/en/about/previous-releases](https://nodejs.org/en/about/pr
 
 Even-numbered releases (20, 22, 24, etc.) are moved to Active LTS and critical bugs are fixed<br>for 30 months.
 
-<style> .two-cols-header { column-gap: 1rem; } </style>
-
 ---
 layout: intro
 ---
 
-# Creating Node.js Libraries
-
-### Is it different from web libraries?
+# Creating NPM Libraries
 
 ---
 
-Not much, except:
-- Don't bundle dependencies by default
-- If it's a CLI tool, add a `bin` field in `package.json`
+## Choose What to Bundle Carefully
+
+````md magic-move
+```ts
+export default defineConfig({
+  build: {
+    rollupOptions: {
+      external: [
+        "react",
+        "react-dom",
+      ]
+    }
+  }
+})
+```
+```ts
+import packageJson from "./package.json" with { type: "json" };
+
+export default defineConfig({
+  build: {
+    rollupOptions: {
+      external: [
+        ...Object.keys(packageJson.peerDependencies || {}),
+        ...Object.keys(packageJson.dependencies || {}),
+      ]
+    }
+  }
+})
+```
+```ts
+import { builtinModules } from "module";
+import packageJson from "./package.json" with { type: "json" };
+
+export default defineConfig({
+  build: {
+    rollupOptions: {
+      external: [
+        ...Object.keys(packageJson.peerDependencies || {}),
+        ...Object.keys(packageJson.dependencies || {}),
+        ...builtinModules,
+        ...builtinModules.map((m) => `node:${m}`),
+      ]
+    }
+  }
+})
+```
+````
+
+---
+
+## Provide type definitions
+
+Prefer a single `.d.ts` file
+
+- Faster Type Checking
+- Smaller package size
+
+Tools:
+- `vite-plugin-dts`
+- API Extractor: More advanced
+- `tsc --declaration`
+
+---
+
+## Provide both ESM and CJS builds if needed
+
+```ts
+export default defineConfig({
+  build: {
+    rollupOptions: {
+      output: [
+        {
+          entryFileNames: "[name].js",
+          format: "es",
+          exports: "named",
+        },
+        {
+          entryFileNames: "[name].cjs",
+          format: "cjs",
+          exports: "named",
+          interop: "compat",
+        },
+      ],
+    }
+  }
+})
+```
+
+```json
+{
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  }
+}
+```
+
+---
+
+## Vite is getting better with tsdown
+
+https://vite.dev/guide/rolldown
+
+https://www.youtube.com/watch?v=w3OkbgK5s68
+
+<Youtube id="w3OkbgK5s68" />
+
 
 ---
 
@@ -175,7 +316,6 @@ Not much, except:
 
 - Use `vite` to bundle CLI tools and libraries
 - `npm link` to test locally
-- Use `vite-plugin-dts` to generate one `.d.ts` file
 - Use `publint` to validate your package before publishing
 
 ---
