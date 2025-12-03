@@ -54,6 +54,7 @@ my-package/
 ::right::
 
 ### **Table of Contents**
+
 <br>
 
 <Toc text-md minDepth="1" maxDepth="1" listClass="my-toc" />
@@ -63,7 +64,8 @@ my-package/
 # Two new packages in frontend-libraries
 
 - `@accurx/eslint-plugin`: Custom ESLint rules for Accurx projects.
-- `@accurx/migrate-scan`: A codebase scanning tool to help with large scale migrations.
+- `@accurx/migrate-scan`: A codebase scanning tool to help with large scale
+  migrations.
 
 ---
 layout: intro
@@ -72,7 +74,6 @@ layout: intro
 # What is Node?
 
 ### And why as a frontend engineer should I care?
-
 
 ---
 layout: two-cols-header
@@ -90,14 +91,14 @@ The environment is the browser which is dynamic and not fixed.
 
 Access to Window, Document, DOM, Fetch API, etc.
 
-
 ::right::
 
 ## Node
 
 <br>
 
-The environment uses the Node runtime. A fixed Node version is used (unless creating libraries).
+The environment uses the Node runtime. A fixed Node version is used (unless
+creating libraries).
 
 Access to File System, Path, HTTP modules, etc.
 
@@ -117,6 +118,7 @@ transition: slide-up
 ```html
 <script src="./script.js" />
 ```
+
 ```html
 <script src="./script.js" type="module" />
 ```
@@ -124,15 +126,15 @@ transition: slide-up
 
 ````md magic-move
 ```js
-var script = document.createElement('script');
-script.src = 'module.js';
+var script = document.createElement("script");
+script.src = "module.js";
 document.head.appendChild(script);
 ```
+
 ```js
-import './module.js';
+import "./module.js";
 ```
 ````
-
 
 ::right::
 
@@ -143,13 +145,13 @@ import './module.js';
 ````md magic-move
 ```js
 $ node ./script.cjs
----
-let everything = require('./module.cjs');
+
+// let everything = require('./module.cjs');
 ```
 ```js
 $ node ./script.mjs
----
-import { one } from './module.js';
+
+// import { one } from './module.js';
 ```
 ```js
 $ node ./script.js // with {"type": "module"}
@@ -176,15 +178,18 @@ layoutClass: gap-8
 
 Different browsers and versions.
 
-Widely available baseline: features supported by core browsers (Chrome, Firefox, Safari, Edge)<br>for 30 months.
+Widely available baseline: features supported by core browsers (Chrome, Firefox,
+Safari, Edge)<br>for 30 months.
 
 ::right::
 
 ## Node
 
-Versions: [nodejs.org/en/about/previous-releases](https://nodejs.org/en/about/previous-releases)
+Versions:
+[nodejs.org/en/about/previous-releases](https://nodejs.org/en/about/previous-releases)
 
-Even-numbered releases (20, 22, 24, etc.) are moved to Active LTS and critical bugs are fixed<br>for 30 months.
+Even-numbered releases (20, 22, 24, etc.) are moved to Active LTS and critical
+bugs are fixed<br>for 30 months.
 
 ---
 layout: intro
@@ -201,14 +206,12 @@ layout: intro
 export default defineConfig({
   build: {
     rollupOptions: {
-      external: [
-        "react",
-        "react-dom",
-      ]
-    }
-  }
-})
+      external: ["react", "react-dom"],
+    },
+  },
+});
 ```
+
 ```ts
 import packageJson from "./package.json" with { type: "json" };
 
@@ -218,11 +221,12 @@ export default defineConfig({
       external: [
         ...Object.keys(packageJson.peerDependencies || {}),
         ...Object.keys(packageJson.dependencies || {}),
-      ]
-    }
-  }
-})
+      ],
+    },
+  },
+});
 ```
+
 ```ts
 import { builtinModules } from "module";
 import packageJson from "./package.json" with { type: "json" };
@@ -235,10 +239,10 @@ export default defineConfig({
         ...Object.keys(packageJson.dependencies || {}),
         ...builtinModules,
         ...builtinModules.map((m) => `node:${m}`),
-      ]
-    }
-  }
-})
+      ],
+    },
+  },
+});
 ```
 ````
 
@@ -252,6 +256,7 @@ Prefer a single `.d.ts` file
 - Smaller package size
 
 Tools:
+
 - `vite-plugin-dts`
 - API Extractor: More advanced
 - `tsc --declaration`
@@ -277,9 +282,9 @@ export default defineConfig({
           interop: "compat",
         },
       ],
-    }
-  }
-})
+    },
+  },
+});
 ```
 
 ```json
@@ -309,10 +314,7 @@ https://www.youtube.com/watch?v=w3OkbgK5s68
 
 <Youtube id="w3OkbgK5s68" />
 
-
 ---
-
-
 
 - Use `vite` to bundle CLI tools and libraries
 - `npm link` to test locally
