@@ -148,20 +148,24 @@ $ node ./script.cjs
 
 // let everything = require('./module.cjs');
 ```
+
 ```js
 $ node ./script.mjs
 
 // import { one } from './module.js';
 ```
+
 ```js
 $ node ./script.js // with {"type": "module"}
 ```
+
 ```js
 $ node ./script.js // with {"type": "module"}
 
 // Otherwise node determines the module type
 // based on its content and gives a warning
 ```
+
 ```js
 $ node ./script.ts // supports erasable TypeScript
 ```
@@ -319,5 +323,3 @@ https://www.youtube.com/watch?v=w3OkbgK5s68
 - Use `vite` to bundle CLI tools and libraries
 - `npm link` to test locally
 - Use `publint` to validate your package before publishing
-
----
