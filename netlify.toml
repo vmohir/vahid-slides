@@ -1,6 +1,6 @@
 [build]
-publish = "packages/learnings-from-libraries/dist"
-command = "cd packages/learnings-from-libraries && npm run build"
+publish = "dist"
+command = "pnpm build"
 
 [build.environment]
 NODE_VERSION = "20"

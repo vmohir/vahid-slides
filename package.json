@@ -8,7 +8,8 @@
   ],
   "scripts": {
     "dev": "pnpm --filter learnings-from-libraries dev",
-    "build": "pnpm --filter learnings-from-libraries build",
+    "prebuild": "rm -rf dist",
+    "build": "pnpm -r --workspace-concurrency=1 build",
     "dev:learnings": "pnpm --filter learnings-from-libraries dev",
     "build:learnings": "pnpm --filter learnings-from-libraries build"
   },

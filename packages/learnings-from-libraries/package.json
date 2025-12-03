@@ -3,7 +3,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "slidev build",
+    "build": "slidev build --base /packages/learnings-from-libraries/ --out ../../dist/packages/learnings-from-libraries",
+    "dev": "slidev --open",
     "start": "slidev --open",
     "export": "slidev export"
   },
