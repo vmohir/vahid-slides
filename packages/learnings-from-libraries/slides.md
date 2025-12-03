@@ -14,9 +14,7 @@ transition: slide-left
 hideInToc: true
 ---
 
-# Creating NPM libraries
-
-## Key takeaways
+# Understanding Node as a Frontend Engineer
 
 ---
 layout: two-cols
@@ -28,9 +26,11 @@ hideInToc: true
 
 TypeScript, Vite, Jest, ESLint, Prettier, etc.
 
-Important to Understand the differences between Node and browser environments.
+It's important to Understand the differences between Node and browser
+environments.
 
 <v-click>
+
 ```
 my-package/
 ├── src/
@@ -38,19 +38,23 @@ my-package/
 ├── tsconfig.app.json
 └── tsconfig.node.json
 ```
+
 </v-click>
 
 <v-click>
+
 ```json
 {
-    "file": [],
-    "references": [
-        { "path": "./tsconfig.app.json" },
-        { "path": "./tsconfig.node.json" }
-    ]
+  "file": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }
 ```
+
 </v-click>
+
 ::right::
 
 ### **Table of Contents**
@@ -67,13 +71,19 @@ my-package/
 - `@accurx/migrate-scan`: A codebase scanning tool to help with large scale
   migrations.
 
+<v-click>
+
+Go to https://grafana.dev.accurx.dev → frontend → code-migrations dashboard
+
+![img.png](./grafana-dashboard.png)
+
+</v-click>
+
 ---
 layout: intro
 ---
 
-# What is Node?
-
-### And why as a frontend engineer should I care?
+# Node vs Browser
 
 ---
 layout: two-cols-header
@@ -87,7 +97,7 @@ transition: slide-up
 
 <br>
 
-The environment is the browser which is dynamic and not fixed.
+The environment is the browser which is dynamic and unknown.
 
 Access to Window, Document, DOM, Fetch API, etc.
 
@@ -266,8 +276,15 @@ Tools:
 - `tsc --declaration`
 
 ---
+layout: two-cols-header
+layoutClass: gap-8
+---
 
 ## Provide both ESM and CJS builds if needed
+
+::left::
+
+vite.config.ts
 
 ```ts
 export default defineConfig({
@@ -290,6 +307,10 @@ export default defineConfig({
   },
 });
 ```
+
+::right::
+
+package.json
 
 ```json
 {
@@ -317,9 +338,3 @@ https://vite.dev/guide/rolldown
 https://www.youtube.com/watch?v=w3OkbgK5s68
 
 <Youtube id="w3OkbgK5s68" />
-
----
-
-- Use `vite` to bundle CLI tools and libraries
-- `npm link` to test locally
-- Use `publint` to validate your package before publishing
