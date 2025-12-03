@@ -64,22 +64,6 @@ my-package/
 <Toc text-md minDepth="1" maxDepth="1" listClass="my-toc" />
 
 ---
-
-# Two new packages in frontend-libraries
-
-- `@accurx/eslint-plugin`: Custom ESLint rules for Accurx projects.
-- `@accurx/migrate-scan`: A codebase scanning tool to help with large scale
-  migrations.
-
-<v-click>
-
-Go to https://grafana.dev.accurx.dev → frontend → code-migrations dashboard
-
-![img.png](./grafana-dashboard.png)
-
-</v-click>
-
----
 layout: intro
 ---
 

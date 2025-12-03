@@ -13,37 +13,6 @@ duration: 20min
 
 # Creating NPM libraries
 
-## Key takeaways
-
----
-
-# Two new libraries
-
-- `@accurx/eslint-plugin`: Custom ESLint rules for Accurx projects.
-- `@accurx/migrate-scan`: A codebase scanning tool to help with large scale migrations.
-
-Here's what I've learned while creating them:
-- `node` supports ESM and TS
-- `vite` library mode
-- `npm link`
-- `vite-plugin-dts`
-- `publint`
-
----
-
-# `node` can run ESM and TypeScript natively now
-
-When you run `node your-file.js` it detects the file type. Use `.mjs` for ESM, `.cjs` for CommonJS or set `"type": "module"` in your `package.json`.
-
-You can run `node your-file.ts` directly!
-
----
-
-- Use `vite` to bundle CLI tools and libraries
-- `npm link` to test locally
-- Use `vite-plugin-dts` to generate one `.d.ts` file
-- Use `publint` to validate your package before publishing
-
 ---
 transition: slide-up
 level: 2
