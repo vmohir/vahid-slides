@@ -7,11 +7,8 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "pnpm --filter learnings-from-libraries dev",
     "prebuild": "rm -rf dist",
-    "build": "pnpm -r --workspace-concurrency=1 build",
-    "dev:learnings": "pnpm --filter learnings-from-libraries dev",
-    "build:learnings": "pnpm --filter learnings-from-libraries build"
+    "build": "pnpm -r --workspace-concurrency=1 build"
   },
   "devDependencies": {
     "oxlint": "^1.30.0",

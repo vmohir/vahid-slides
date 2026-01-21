@@ -9,7 +9,62 @@ hideInToc: true
 
 # Package Dependencies & Bundling
 
-Everything you need to know when publishing NPM packages
+How I reduced bundle size of internal packages by
+
+---
+
+# How NPM Installs Dependencies
+
+npm v3+ uses a flat structure with hoisting:
+
+````md magic-move
+```
+# What you might expect (nested)
+node_modules/
+├── package-a/
+│   └── node_modules/
+│       └── dep@1/
+└── package-b/
+    └── node_modules/
+        └── dep@2/
+```
+
+```
+# What npm actually does (hoisted)
+node_modules/
+├── package-a/
+├── package-b/
+└── lodash@4.17.21/    # Hoisted to top level
+```
+
+```
+# When versions conflict (partially nested)
+node_modules/
+├── package-a/
+│   └── node_modules/
+│       └── lodash@4.17.20/   # Can't hoist, conflicts
+├── package-b/
+└── lodash@4.17.21/    # Hoisted (most common version)
+```
+````
+
+---
+
+## npm3 Duplication
+
+**Key insight:** Install order matters. When version ranges don't overlap, npm creates nested copies.
+
+```
+my-app/
+├── node_modules/
+│   ├── module-a/           # requires lodash@^3.0.0
+│   │   └── node_modules/
+│   │       └── lodash@3.10.1/   # Nested (can't share)
+│   ├── module-b/           # requires lodash@^4.0.0
+│   └── lodash@4.17.21/     # Hoisted
+```
+
+Read more: [npm3 Duplication](https://npm.github.io/how-npm-works-docs/npm3/duplication.html)
 
 ---
 hideInToc: true
@@ -23,19 +78,9 @@ hideInToc: true
 
 # dependencies vs peerDependencies
 
-The three types of dependencies in package.json
-
----
-
-## The Three Dependency Types
-
-<v-clicks>
-
-- **dependencies** - Installed automatically with your package
-- **peerDependencies** - Consumer must provide (ensures single instance)
+- **dependencies** - "Install this for me" - npm installs it in your package
+- **peerDependencies** - "I expect you to have this" - declares compatibility
 - **devDependencies** - Build-time only, not shipped to consumers
-
-</v-clicks>
 
 ---
 
@@ -44,111 +89,94 @@ The three types of dependencies in package.json
 ````md magic-move
 ```json
 {
-  "name": "my-utils",
+  "name": "@accurx/design",
   "dependencies": {
-    "lodash": "^4.17.21"
+    "es-toolkit": "^1.0.0",
+    "radix-ui": "^1.0.0"
   }
 }
 ```
 
 ```json
 {
-  "name": "react-date-picker",
+  "name": "@accurx/design",
   "dependencies": {
-    "lodash": "^4.17.21"
+    "es-toolkit": "^1.0.0",
+    "radix-ui": "^1.0.0"
   },
   "peerDependencies": {
-    "react": "^18.0.0"
+    "react": "^18.0.0",
+    "react-router": "^6.0.0"
   }
 }
 ```
 
 ```json
 {
-  "name": "react-date-picker",
+  "name": "@accurx/design",
   "dependencies": {
-    "lodash": "^4.17.21"
+    "es-toolkit": "^1.0.0",
+    "radix-ui": "^1.0.0"
   },
   "peerDependencies": {
-    "react": "^18.0.0"
+    "react": "^18.0.0",
+    "react-router": "^6.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react-router": { "optional": true }
+  }
+}
+```
+
+```json
+{
+  "name": "@accurx/design",
+  "dependencies": {
+    "es-toolkit": "^1.0.0",
+    "radix-ui": "^1.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-router": "^6.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react-router": { "optional": true }
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
-    "vitest": "^1.0.0"
+    "react": "^18.0.0",
+    "react-router": "^6.0.0",
+    "typescript": "~5.0.0"
   }
 }
 ```
 ````
+
+---
+
+## Why Peers in devDependencies Too?
+
+- **peerDependencies** → tells consumers what to install
+- **devDependencies** → ensures YOU have them during development
+
+Without peers in devDependencies, you can't run tests or dev server!
 
 ---
 
 ## Why peerDependencies Matter
 
-<v-clicks>
+**The singleton problem (React, Vue, etc):**
 
-**The React singleton problem:**
+These libraries require a single instance - multiple copies break state/hooks.
 
-If your package bundles its own React:
-- Consumer's app has React 18.2.0
-- Your package ships React 18.1.0
-- **Result:** Two React instances = hooks break!
+With `dependencies`:
+- You're saying "install this version for me"
+- If consumer has a different version → two copies
 
-</v-clicks>
+With `peerDependencies`:
+- You're saying "I'm compatible with this range"
+- npm prefers the consumer's existing copy if it matches
 
-<v-click>
-
-**Solution:** Use peerDependencies
-
-```json
-{
-  "peerDependencies": {
-    "react": "^17.0.0 || ^18.0.0"
-  }
-}
-```
-
-</v-click>
-
----
-
-## Real World Example
-
-````md magic-move
-```json
-// A utility library - bundles everything
-{
-  "name": "@company/utils",
-  "dependencies": {
-    "date-fns": "^3.0.0",
-    "uuid": "^9.0.0"
-  }
-}
-```
-
-```json
-// A React component library - peers React
-{
-  "name": "@company/ui",
-  "dependencies": {
-    "clsx": "^2.0.0"
-  },
-  "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
-  }
-}
-```
-
-```json
-// A plugin - peers the host library
-{
-  "name": "vite-plugin-svg",
-  "peerDependencies": {
-    "vite": "^5.0.0"
-  }
-}
-```
-````
+**Note:** peerDependencies doesn't *guarantee* single copy - it *declares compatibility*. Duplicates happen when version ranges don't overlap.
 
 ---
 
@@ -160,11 +188,7 @@ Making peer dependencies optional
 
 ## The optional Flag
 
-<v-click>
-
 When a package works with multiple frameworks:
-
-</v-click>
 
 ````md magic-move
 ```json
@@ -192,28 +216,18 @@ When a package works with multiple frameworks:
 ```
 ````
 
-<v-click>
-
 **What `optional: true` does:**
 - npm won't warn if the peer is missing
 - npm won't auto-install it
 - Your code must handle the missing dependency
 
-</v-click>
-
 ---
 
 ## When to Use Optional Peers
 
-<v-clicks>
-
 - **Multi-framework support** - React OR Vue OR Svelte
 - **Optional integrations** - Works alone, enhanced with X
 - **TypeScript types** - `@types/*` packages as optional peers
-
-</v-clicks>
-
-<v-click>
 
 ```json
 {
@@ -226,108 +240,6 @@ When a package works with multiple frameworks:
 }
 ```
 
-</v-click>
-
----
-
-# How NPM Installs Dependencies
-
-Understanding node_modules structure
-
----
-
-## Flat vs Nested node_modules
-
-<v-click>
-
-**npm v3+ uses a flat structure with hoisting:**
-
-</v-click>
-
-````md magic-move
-```
-# What you might expect (nested)
-node_modules/
-├── package-a/
-│   └── node_modules/
-│       └── lodash@4.17.20/
-└── package-b/
-    └── node_modules/
-        └── lodash@4.17.21/
-```
-
-```
-# What npm actually does (hoisted)
-node_modules/
-├── package-a/
-├── package-b/
-└── lodash@4.17.21/    # Hoisted to top level
-```
-
-```
-# When versions conflict (partially nested)
-node_modules/
-├── package-a/
-│   └── node_modules/
-│       └── lodash@4.17.20/   # Can't hoist, conflicts
-├── package-b/
-└── lodash@4.17.21/    # Hoisted (most common version)
-```
-````
-
----
-
-## Package Manager Differences
-
-<v-clicks>
-
-| Feature | npm | pnpm | yarn |
-|---------|-----|------|------|
-| Storage | Flat copy | Symlinks + Store | PnP / node_modules |
-| Disk usage | High | Low (shared) | Medium |
-| Strictness | Loose | Strict | Configurable |
-| Phantom deps | Allowed | Blocked | Depends |
-
-</v-clicks>
-
-<v-click>
-
-**Phantom dependencies:** Using packages you didn't explicitly install (because they were hoisted from a transitive dependency)
-
-</v-click>
-
----
-
-## pnpm's Approach
-
-````md magic-move
-```
-# npm - flat, allows phantom deps
-node_modules/
-├── my-dep/
-├── transitive-dep/      # You can import this!
-└── another-transitive/  # And this too!
-```
-
-```
-# pnpm - symlinked, strict
-node_modules/
-├── .pnpm/               # Actual packages stored here
-│   ├── my-dep@1.0.0/
-│   └── transitive-dep@2.0.0/
-└── my-dep -> .pnpm/my-dep@1.0.0/node_modules/my-dep
-# transitive-dep is NOT accessible from your code
-```
-````
-
-<v-click>
-
-**Why this matters for package authors:**
-
-Test your package with pnpm to catch missing dependencies early!
-
-</v-click>
-
 ---
 
 # To Bundle or Not to Bundle
@@ -338,8 +250,6 @@ Making the right decision for your dependencies
 
 ## Bundle vs External
 
-<v-clicks>
-
 **Bundle** (include in your dist):
 - Small utilities you wrote
 - Tiny dependencies (< 5KB)
@@ -349,8 +259,6 @@ Making the right decision for your dependencies
 - Peer dependencies (React, Vue)
 - Large dependencies (lodash, date-fns)
 - Dependencies consumers likely have
-
-</v-clicks>
 
 ---
 
@@ -393,8 +301,6 @@ export default {
 
 ## Why Bundling Peers is Bad
 
-<v-click>
-
 ```
 Consumer's bundle:
 ├── your-package (15KB)
@@ -404,16 +310,10 @@ Consumer's bundle:
 Total: 105KB (should be 60KB)
 ```
 
-</v-click>
-
-<v-click>
-
 **Problems:**
 - Duplicate code = larger bundles
 - Multiple instances = broken state
 - Can't tree-shake what you bundled
-
-</v-click>
 
 ---
 
@@ -425,11 +325,7 @@ Enabling aggressive tree-shaking
 
 ## What are Side Effects?
 
-<v-click>
-
 Code that runs just by importing:
-
-</v-click>
 
 ````md magic-move
 ```js
@@ -491,22 +387,11 @@ export function Button() {
 ```
 ````
 
-<v-click>
-
-**Bundler support:**
-- Webpack (introduced it)
-- Rollup
-- esbuild
-- Vite
-- Parcel
-
-</v-click>
+**Bundler support:** Webpack, Rollup, esbuild, Vite, Parcel
 
 ---
 
 ## The Impact
-
-<v-click>
 
 ```js
 // Consumer's code
@@ -514,23 +399,13 @@ import { Button } from 'my-ui-library'
 // Only uses Button, not the other 50 components
 ```
 
-</v-click>
-
-<v-click>
-
 **Without sideEffects: false**
 - Bundler keeps all exports "just in case"
 - Full library ends up in bundle
 
-</v-click>
-
-<v-click>
-
 **With sideEffects: false**
 - Bundler knows unused exports are safe to remove
 - Only Button code is included
-
-</v-click>
 
 ---
 
@@ -542,11 +417,7 @@ Modern package entry points
 
 ## The exports Field
 
-<v-click>
-
 Replaces `main`, `module`, and `browser` fields:
-
-</v-click>
 
 ````md magic-move
 ```json
@@ -601,24 +472,12 @@ Replaces `main`, `module`, and `browser` fields:
   "exports": {
     ".": "./dist/index.js",
     "./utils": "./dist/utils.js",
-    "./types": "./dist/types.js"
-  }
-}
-```
-
-```json
-{
-  "exports": {
-    ".": "./dist/index.js",
-    "./utils": "./dist/utils.js",
     "./react": "./dist/adapters/react.js",
     "./vue": "./dist/adapters/vue.js"
   }
 }
 ```
 ````
-
-<v-click>
 
 ```js
 // Consumer imports
@@ -627,17 +486,11 @@ import { helper } from 'my-package/utils'
 import { useMyHook } from 'my-package/react'
 ```
 
-</v-click>
-
 ---
 
 ## Subentries + Optional Peers
 
-<v-click>
-
 The powerful combination:
-
-</v-click>
 
 ````md magic-move
 ```json
@@ -672,15 +525,11 @@ The powerful combination:
 ```
 ````
 
-<v-click>
-
 **Why this works:**
 - Core functionality has no framework deps
 - React users import `pkg/react` (only needs React)
 - Vue users import `pkg/vue` (only needs Vue)
 - No runtime errors from missing frameworks!
-
-</v-click>
 
 ---
 
@@ -723,13 +572,13 @@ A complete package.json example
 ````md magic-move
 ```json
 {
-  "name": "@company/awesome-lib"
+  "name": "@accurx/design"
 }
 ```
 
 ```json
 {
-  "name": "@company/awesome-lib",
+  "name": "@accurx/design",
   "type": "module",
   "sideEffects": false
 }
@@ -737,17 +586,13 @@ A complete package.json example
 
 ```json
 {
-  "name": "@company/awesome-lib",
+  "name": "@accurx/design",
   "type": "module",
   "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
-    },
-    "./react": {
-      "types": "./dist/react.d.ts",
-      "import": "./dist/react.js"
     }
   }
 }
@@ -755,56 +600,48 @@ A complete package.json example
 
 ```json
 {
-  "name": "@company/awesome-lib",
+  "name": "@accurx/design",
   "type": "module",
   "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
-    },
-    "./react": {
-      "types": "./dist/react.d.ts",
-      "import": "./dist/react.js"
     }
-  },
-  "peerDependencies": {
-    "react": "^18.0.0"
-  },
-  "peerDependenciesMeta": {
-    "react": { "optional": true }
-  }
-}
-```
-
-```json
-{
-  "name": "@company/awesome-lib",
-  "type": "module",
-  "sideEffects": false,
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
-    "./react": {
-      "types": "./dist/react.d.ts",
-      "import": "./dist/react.js"
-    }
-  },
-  "peerDependencies": {
-    "react": "^18.0.0"
-  },
-  "peerDependenciesMeta": {
-    "react": { "optional": true }
   },
   "dependencies": {
-    "tiny-invariant": "^1.3.0"
+    "es-toolkit": "^1.0.0",
+    "radix-ui": "^1.0.0"
+  }
+}
+```
+
+```json
+{
+  "name": "@accurx/design",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "es-toolkit": "^1.0.0",
+    "radix-ui": "^1.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-router": "^6.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react-router": { "optional": true }
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
-    "tsup": "^8.0.0",
-    "vitest": "^1.0.0"
+    "react": "^18.0.0",
+    "react-router": "^6.0.0",
+    "typescript": "~5.0.0"
   }
 }
 ```
@@ -816,16 +653,12 @@ layout: intro
 
 # Key Takeaways
 
-<v-clicks>
-
-1. **dependencies** for what you bundle, **peerDependencies** for what consumers provide
-2. **peerDependenciesMeta** makes peers optional (multi-framework support)
-3. **Don't bundle** peer dependencies or large shared libs
-4. **sideEffects: false** enables tree-shaking
-5. **exports** with subentries = modular, tree-shakeable packages
-6. Test with **pnpm** to catch missing dependencies
-
-</v-clicks>
+1. **dependencies** = "install this for me", **peerDependencies** = "I expect you to have this"
+2. Peers go in **devDependencies** too (for local development)
+3. **peerDependenciesMeta** makes peers optional
+4. **Don't bundle** peer dependencies
+5. **sideEffects: false** enables tree-shaking
+6. **exports** with subentries = modular, tree-shakeable packages
 
 ---
 layout: intro
@@ -833,3 +666,6 @@ layout: intro
 
 # Questions?
 
+## Resources
+- [npm3 Duplication](https://npm.github.io/how-npm-works-docs/npm3/duplication.html)
+- [React: Invalid Hook Call Warning](https://react.dev/warnings/invalid-hook-call-warning)
