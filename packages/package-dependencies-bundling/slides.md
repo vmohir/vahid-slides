@@ -3,68 +3,11 @@ theme: default
 title: Package Dependencies & Bundling
 layout: intro
 mdc: true
-transition: slide-left
+#transition: slide-left
 hideInToc: true
 ---
 
 # Package Dependencies & Bundling
-
-How I reduced bundle size of internal packages by
-
----
-
-# How NPM Installs Dependencies
-
-npm v3+ uses a flat structure with hoisting:
-
-````md magic-move
-```
-# What you might expect (nested)
-node_modules/
-├── package-a/
-│   └── node_modules/
-│       └── dep@1/
-└── package-b/
-    └── node_modules/
-        └── dep@2/
-```
-
-```
-# What npm actually does (hoisted)
-node_modules/
-├── package-a/
-├── package-b/
-└── lodash@4.17.21/    # Hoisted to top level
-```
-
-```
-# When versions conflict (partially nested)
-node_modules/
-├── package-a/
-│   └── node_modules/
-│       └── lodash@4.17.20/   # Can't hoist, conflicts
-├── package-b/
-└── lodash@4.17.21/    # Hoisted (most common version)
-```
-````
-
----
-
-## npm3 Duplication
-
-**Key insight:** Install order matters. When version ranges don't overlap, npm creates nested copies.
-
-```
-my-app/
-├── node_modules/
-│   ├── module-a/           # requires lodash@^3.0.0
-│   │   └── node_modules/
-│   │       └── lodash@3.10.1/   # Nested (can't share)
-│   ├── module-b/           # requires lodash@^4.0.0
-│   └── lodash@4.17.21/     # Hoisted
-```
-
-Read more: [npm3 Duplication](https://npm.github.io/how-npm-works-docs/npm3/duplication.html)
 
 ---
 hideInToc: true
@@ -75,24 +18,118 @@ hideInToc: true
 <Toc minDepth="1" maxDepth="1" />
 
 ---
+layout: two-cols-header
+layoutClass: gap-8
+---
 
-# dependencies vs peerDependencies
+# How NPM Installs Dependencies
 
-- **dependencies** - "Install this for me" - npm installs it in your package
-- **peerDependencies** - "I expect you to have this" - declares compatibility
-- **devDependencies** - Build-time only, not shipped to consumers
+::left::
+
+[How NPM v3+ works](https://npm.github.io/how-npm-works-docs/npm3/how-npm3-works.html)
+
+> dependency resolution depends on install order
+
+Example:
+1. Install A-v1
+2. Install B-v1
+3. Update to A-v2
+4. Update to B-v2
+5. `npm dedupe`
+
+::right::
+
+````md magic-move
+```sh
+A-v1 --> Dep-v1
+B-v1 --> Dep-v1
+A-v2 --> Dep-v2
+B-v2 --> Dep-v2
+```
+```sh
+A-v1 --> Dep-v1
+B-v1 --> Dep-v1
+A-v2 --> Dep-v2
+B-v2 --> Dep-v2
+
+node_modules/
+├── A-v1/
+└── dep-v1/ # Hoisted
+```
+```sh
+A-v1 --> dep-v1
+B-v1 --> dep-v1
+A-v2 --> dep-v2
+B-v2 --> dep-v2
+
+node_modules/
+├── A-v1/
+├── B-v1/
+└── dep-v1/ # Hoisted
+```
+
+```sh
+A-v1 --> Dep-v1
+B-v1 --> Dep-v1
+A-v2 --> Dep-v2
+B-v2 --> Dep-v2
+
+node_modules/
+├── A-v2/
+│   └── node_modules/
+│       └── dep-v2/   
+├── B-v1/
+└── dep-v1/ # Hoisted
+```
+```sh
+A-v1 --> Dep-v1
+B-v1 --> Dep-v1
+A-v2 --> Dep-v2
+B-v2 --> Dep-v2
+
+node_modules/
+├── A-v2/
+│   └── node_modules/
+│       └── dep-v2/   
+└── B-v2/
+    └── node_modules/
+        └── dep-v2/
+```
+```sh
+A-v1 --> Dep-v1
+B-v1 --> Dep-v1
+A-v2 --> Dep-v2
+B-v2 --> Dep-v2
+
+node_modules/
+├── A-v2/   
+├── B-v2/
+└── dep-v2/ # Hoisted
+```
+````
 
 ---
 
-## When to Use Each
+# How to find duplicated dependencies
+
+- `npm find-dupes`: shows all duplicated packages
+- `npm ls <package>`: shows dependency tree for a package
+- `npx node-modules-inspector`: Node modules inspector shows a visual tree of dependencies and duplicates
+
+<img v-click src="./multiple-versions.png" alt="" style="max-width: 650px; margin: 0 auto;" />
+
+---
+
+## Radix UI Example in Design System
 
 ````md magic-move
 ```json
 {
   "name": "@accurx/design",
   "dependencies": {
-    "es-toolkit": "^1.0.0",
-    "radix-ui": "^1.0.0"
+    "@radix-ui/react-accordion": "^1.0.0",
+    "@radix-ui/react-button": "^1.0.0",
+    "@radix-ui/react-dialog": "^1.0.0"
   }
 }
 ```
@@ -101,12 +138,63 @@ hideInToc: true
 {
   "name": "@accurx/design",
   "dependencies": {
-    "es-toolkit": "^1.0.0",
     "radix-ui": "^1.0.0"
-  },
-  "peerDependencies": {
-    "react": "^18.0.0",
-    "react-router": "^6.0.0"
+  }
+}
+```
+````
+
+<v-switch>
+<template #1><img src="./before-radix-ui-separate-radix-packages.png" alt="" /></template>
+<template #2><img src="./after-using-radix-ui.png" alt="" /></template>
+</v-switch>
+
+---
+layout: intro
+---
+
+# dependencies vs peerDependencies
+
+---
+
+# NPM Dependency Types for libraries
+
+- **dependencies**: npm installs them in consumer's node_modules
+- **peerDependencies**: npm expects consumers to have these
+    - Doesn't guarantee single copy. duplicates happen when version ranges don't overlap.
+- **devDependencies**: dev-time only, not shipped to consumers.
+    - Without peers in devDependencies, you can't run tests or dev server.
+    - In non-library projects, devDependencies behave like dependencies.
+- **peerDependenciesMeta**: mark peers as optional.
+    - npm won't warn/error if the peer is missing
+    - npm won't auto-install it
+    - Consumer must handle the missing dependency
+
+<v-click>
+
+- **optionalDependencies**: like dependencies, but install failures are ignored. Can be omitted by `npm install --no-optional`
+    - For example `playwright` is optional and can speed up CI installs for build.
+
+</v-click>
+
+<style>
+strong {
+  color: #ffc870;
+}
+</style>
+
+
+---
+
+## Example
+
+````md magic-move
+```json
+{
+  "name": "@accurx/design",
+  "exports": { ".": "./dist/index.js" },
+  "dependencies": {
+    "radix-ui": "^1.0.0" # We don't expect consumers to install this
   }
 }
 ```
@@ -114,16 +202,66 @@ hideInToc: true
 ```json
 {
   "name": "@accurx/design",
+  "exports": { ".": "./dist/index.js" },
   "dependencies": {
-    "es-toolkit": "^1.0.0",
     "radix-ui": "^1.0.0"
   },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-router": "^6.0.0"
+    "react": "^18.0.0 | ^19.0.0" # We expect consumers to have React
+  }
+}
+```
+
+```json
+{
+  "name": "@accurx/design",
+  "exports": { ".": "./dist/index.js" },
+  "dependencies": {
+    "radix-ui": "^1.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 | ^19.0.0"
+  },
+  "devDependencies": {
+    "react": "^19.0.0" # For local development/testing
+  }
+}
+```
+
+
+```json
+{
+  "name": "@accurx/design",
+  "exports": { ".": "./dist/index.js" },
+  "dependencies": {
+    "radix-ui": "^1.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 | ^19.0.0",
+    "react-router": "^6.0.0" # One component uses this
+  },
+  "devDependencies": {
+    "react": "^19.0.0"
+  }
+}
+```
+
+```json
+{
+  "name": "@accurx/design",
+  "exports": { ".": "./dist/index.js" },
+  "dependencies": {
+    "radix-ui": "^1.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 | ^19.0.0",
+    "react-router": "^6.0.0" # One component uses this
   },
   "peerDependenciesMeta": {
-    "react-router": { "optional": true }
+    "react-router": { "optional": true } # Not all consumers use that component
+  },
+  "devDependencies": {
+    "react": "^19.0.0"
   }
 }
 ```
@@ -131,115 +269,72 @@ hideInToc: true
 ```json
 {
   "name": "@accurx/design",
+  "exports": {
+    ".": "./dist/index.js",
+    "./router-component": "./dist/router-component.js"
+  },
   "dependencies": {
-    "es-toolkit": "^1.0.0",
     "radix-ui": "^1.0.0"
   },
   "peerDependencies": {
-    "react": "^18.0.0",
+    "react": "^18.0.0 | ^19.0.0",
     "react-router": "^6.0.0"
   },
   "peerDependenciesMeta": {
     "react-router": { "optional": true }
   },
   "devDependencies": {
-    "react": "^18.0.0",
-    "react-router": "^6.0.0",
-    "typescript": "~5.0.0"
-  }
-}
-```
-````
-
----
-
-## Why Peers in devDependencies Too?
-
-- **peerDependencies** → tells consumers what to install
-- **devDependencies** → ensures YOU have them during development
-
-Without peers in devDependencies, you can't run tests or dev server!
-
----
-
-## Why peerDependencies Matter
-
-**The singleton problem (React, Vue, etc):**
-
-These libraries require a single instance - multiple copies break state/hooks.
-
-With `dependencies`:
-- You're saying "install this version for me"
-- If consumer has a different version → two copies
-
-With `peerDependencies`:
-- You're saying "I'm compatible with this range"
-- npm prefers the consumer's existing copy if it matches
-
-**Note:** peerDependencies doesn't *guarantee* single copy - it *declares compatibility*. Duplicates happen when version ranges don't overlap.
-
----
-
-# peerDependenciesMeta
-
-Making peer dependencies optional
-
----
-
-## The optional Flag
-
-When a package works with multiple frameworks:
-
-````md magic-move
-```json
-{
-  "name": "universal-state",
-  "peerDependencies": {
-    "react": "^18.0.0",
-    "vue": "^3.0.0"
+    "react": "^19.0.0"
   }
 }
 ```
 
 ```json
 {
-  "name": "universal-state",
+  "name": "@accurx/design",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "dependencies": {
+    "radix-ui": "^1.0.0"
+  },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "vue": "^3.0.0"
+    "react": "^18.0.0 | ^19.0.0"
+  },
+  "devDependencies": {
+    "react": "^19.0.0"
+  }
+}
+```
+
+```json {11|13-17|18-21}
+{
+  "name": "@accurx/design",
+  "exports": {
+    ".": "./dist/index.js",
+  },
+  "dependencies": {
+    "radix-ui": "^1.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 | ^19.0.0",
+    "vue": "^3.0.0", # Support Vue too
   },
   "peerDependenciesMeta": {
+    # Consumers may use React OR Vue
     "react": { "optional": true },
-    "vue": { "optional": true }
+    "vue": { "optional": true },
+  },
+  "devDependencies": {
+    "react": "^19.0.0",
+    "vue": "^3.0.0",
   }
 }
 ```
 ````
 
-**What `optional: true` does:**
-- npm won't warn if the peer is missing
-- npm won't auto-install it
-- Your code must handle the missing dependency
-
 ---
-
-## When to Use Optional Peers
-
-- **Multi-framework support** - React OR Vue OR Svelte
-- **Optional integrations** - Works alone, enhanced with X
-- **TypeScript types** - `@types/*` packages as optional peers
-
-```json
-{
-  "peerDependencies": {
-    "@types/react": "^18.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@types/react": { "optional": true }
-  }
-}
-```
-
+layout: intro
 ---
 
 # To Bundle or Not to Bundle
