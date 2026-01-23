@@ -226,42 +226,62 @@ Can use `.git-blame-ignore-revs` to hide formatting commits
 
 ## Example: TypeScript verbatimModuleSyntax
 
-Adding explicit `import type` and `export type`:
+Adding explicit `import type`:
 
 ````md magic-move
 ```ts
 // Before: ambiguous imports
 import { User, UserService } from './user'
-export { User }
 ```
 
 ```ts
 // After: explicit type imports
-import type { User } from './user'
-import { UserService } from './user'
-export type { User }
+import { type User, UserService } from './user'
 ```
 ````
 
 ---
+layout: two-cols-header
+layoutClass: gap-x-8
+---
 
 # How a good migration strategy looks
+
+::left::
 
 <v-clicks depth="2">
 
 1. **Detect legacy patterns**:
     - Regex (grep)
     - Linters
-    - `hasLegacyCode(file, migration): boolean`
+    - ```ts
+      function hasLegacy(file): boolean
+      ```
+    - Ideally immediate feedback in IDEs
 2. **Migrate gradually**:
     - Owned by teams
-    - Guideline
     - Fail CI for new code
 3. **Track progress**:
     - Easy to see remaining work
     - Incentivise completion
 
 </v-clicks>
+
+::right::
+
+<div v-click="[5, 6]">
+
+```ts twoslash
+import { User } from './user'
+```
+
+</div>
+
+<style>
+.twoslash .twoslash-hover {
+    border-bottom: 1px dashed;
+}
+</style>
 
 ---
 
@@ -317,21 +337,18 @@ Assign ownership to teams:
 
 ---
 
-## 5. CI Gates for New Code
+## 5. CI Gates for Changed Files
 
-Block old patterns in modified files:
+New code must follow new patterns
 
-```yaml
-# In CI pipeline
+```yaml {*|3|4|5}
 - name: Check migration compliance
-  run: |
-    # Only lint files changed in this PR
-    FILES=$(git diff --name-only origin/main)
-    npx eslint $FILES --rule '@typescript-eslint/consistent-type-imports: error'
+  steps:
+     - run: FILES=$(git diff --name-only origin/main)
+     - run: eslint $FILES
+     - use: github-annotations
 ```
 
-- New code must follow new patterns
-- Gradually shrinks the migration surface
 
 ---
 
