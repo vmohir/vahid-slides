@@ -7,9 +7,11 @@ transition: slide-left
 fonts:
   # basically the text
   sans: Gabarito
-  weights: '200,400,700'
+  weights: '100,200,300,400,500,600,700,800,900'
   # use with `font-serif` css class from UnoCSS
-  serif: Newsreader
+   #  serif: Newsreader
+  serif: Raleway
+#  serif: Montserrat
   # for code blocks, inline code, etc.
   mono: Fira Code
   
