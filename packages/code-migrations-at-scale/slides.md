@@ -7,14 +7,14 @@ transition: slide-left
 fonts:
   # basically the text
   sans: Gabarito
-  weights: '100,200,300,400,500,600,700,800,900'
+  weights: "100,200,300,400,500,600,700,800,900"
   # use with `font-serif` css class from UnoCSS
-   #  serif: Newsreader
+  #  serif: Newsreader
   serif: Raleway
-#  serif: Montserrat
+  #  serif: Montserrat
   # for code blocks, inline code, etc.
   mono: Fira Code
-  
+
 hideInToc: true
 ---
 
@@ -37,6 +37,10 @@ h1 {
     text-shadow: none;
 }
 </style>
+
+<!--
+How we tackle code migrations at scale - moving from legacy patterns to modern ones across large codebases.
+-->
 
 ---
 hideInToc: true
@@ -190,7 +194,7 @@ box-shadow: none;
   left: 50%;
   width: 50%;
   height: 2px;
-  background: linear-gradient(90deg, rgba(0,255,150,0.8), transparent);
+  background: linear-gradient(90deg, rgba(0,255,150,0.4), transparent);
   transform-origin: left center;
   animation: scan 15s linear infinite;
   box-shadow: 0 0 15px rgba(0,255,150,0.5);
@@ -202,17 +206,35 @@ opacity: 0.7;
 }
 </style>
 
+<!--
+At Accurx we have a tech radar in the frontend guild
+to standardise technology choices for new projects.
+
+It defines WHAT to adopt, but not HOW to migrate existing code.
+
+We need a strategy for transitioning legacy codebases.
+-->
+
+---
+layout: two-cols-header
+layoutClass: gap-x-8
 ---
 
 # Why Code Migration is Hard at Scale
 
 You can't do migrations in one big commit.
 
+::left::
+
+<v-clicks>
+
 - Hard to test
 - Huge PR to review
 - Git blame becomes useless
-- Lots of merge conflicts
 - Difficult to revert if something goes wrong
+- Lots of merge conflicts
+
+</v-clicks>
 
 <v-click>
 
@@ -224,23 +246,156 @@ Can use `.git-blame-ignore-revs` to hide formatting commits
 
 </v-click>
 
+::right::
+
+<div v-click="[2, 3]">
+
+<a href="#" class="tabnav-tab">
+<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16">
+<path d="M1 1.75C1 .784 1.784 0 2.75 0h7.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16H2.75A1.75 1.75 0 0 1 1 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25V4.664a.25.25 0 0 0-.073-.177l-2.914-2.914a.25.25 0 0 0-.177-.073ZM8 3.25a.75.75 0 0 1 .75.75v1.5h1.5a.75.75 0 0 1 0 1.5h-1.5v1.5a.75.75 0 0 1-1.5 0V7h-1.5a.75.75 0 0 1 0-1.5h1.5V4A.75.75 0 0 1 8 3.25Zm-3 8a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1-.75-.75Z"></path>
+</svg>
+Files changed
+ <span id="files_tab_counter" title="5" data-view-component="true" class="Counter">99+</span>
+</a>
+<span class="diffstat">
+<span class="color-fg-success">
++9999
+</span>
+<span class="color-fg-danger">
+−9999
+</span>
+</span>
+
+<span>
+ <span class="diffstat-block-added"></span>
+<span class="diffstat-block-added"></span>
+<span class="diffstat-block-deleted"></span>
+<span class="diffstat-block-deleted"></span>
+<span class="diffstat-block-neutral"></span>
+</span>
+
+</div>
+
+<div v-click="[3, 4]">
+
+<div class="git-blame">
+ <div class="blame-line"><span class="blame-author">Vahid</span><span class="blame-date">2 days ago</span><span class="blame-code">import { type User } from './user'</span></div>
+ <div class="blame-line"><span class="blame-author">Vahid</span><span class="blame-date">2 days ago</span><span class="blame-code">import { type Order } from './order'</span></div>
+ <div class="blame-line"><span class="blame-author">Vahid</span><span class="blame-date">2 days ago</span><span class="blame-code">import { type Cart } from './cart'</span></div>
+</div>
+
+</div>
+
+<style>
+.diffstat-block-deleted, .diffstat-block-added, .diffstat-block-neutral {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-left: 1px;
+}
+.diffstat-block-added {
+    background-color: #3fb950;
+}
+.diffstat-block-deleted {
+    background-color: #f85149;
+}
+.diffstat-block-neutral {
+    background-color: #8b949e;
+}
+.Counter {
+    background-color: #444;
+    border-radius: 2em;
+    color: #ffffff;
+    display: inline-block;
+    min-width: 20px;
+    padding: 0 4px;
+    text-align: center;
+}
+.tabnav-tab {
+    display: inline-flex;
+gap: 8px;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #c9d1d9;
+    background-color: #161b22;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #30363d;
+    text-decoration: none;
+svg {
+color: #8b949e;
+fill: #8b949e;
+}
+}
+.diffstat {
+  margin-left: 8px;
+}
+.color-fg-success {
+  color: #3fb950;
+}
+.color-fg-danger {
+  color: #f85149;
+}
+.git-blame {
+  margin: 0.5rem 0 0.5rem 1.5rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.6rem;
+  background: #161b22;
+  border-radius: 6px;
+  padding: 0.5rem;
+  border: 1px solid #30363d;
+}
+.blame-line {
+  display: flex;
+  gap: 1rem;
+  padding: 2px 0;
+  border-bottom: 1px solid #21262d;
+}
+.blame-line:last-child {
+  border-bottom: none;
+}
+.blame-author {
+  color: #f78166;
+  min-width: 20px;
+}
+.blame-date {
+  color: #7d8590;
+  min-width: 40px;
+}
+.blame-code {
+  color: #e6edf3;
+}
+</style>
+
+<!--
+Big-bang migrations are tempting but risky.
+The only exception is purely cosmetic changes like formatting - git-blame-ignore-revs hides those commits from blame.
+But for semantic changes, we need a gradual approach.
+-->
+
 ---
 
-## Example: TypeScript verbatimModuleSyntax
+## Example: TypeScript `verbatimModuleSyntax`
 
 Adding explicit `import type`:
 
 ````md magic-move
 ```ts
 // Before: ambiguous imports
-import { User, UserService } from './user'
+import { User, UserService } from "./user";
 ```
 
 ```ts
 // After: explicit type imports
-import { type User, UserService } from './user'
+import { type User, UserService } from "./user";
 ```
 ````
+
+<!--
+Simple example: adding explicit type imports for verbatimModuleSyntax.
+Thousands of files need this change - can't do it in one PR.
+-->
 
 ---
 layout: two-cols-header
@@ -254,28 +409,34 @@ layoutClass: gap-x-8
 <v-clicks depth="2">
 
 1. **Detect legacy patterns**:
-    - Regex (grep)
-    - Linters
-    - ```ts
-      function hasLegacy(file): boolean
-      ```
-    - Ideally immediate feedback in IDEs
+   - Regex (grep)
+   - Linters
+   - ```ts
+     function hasLegacy(file): boolean;
+     ```
 2. **Migrate gradually**:
-    - Owned by teams
-    - Fail CI for new code
+   - Ideally immediate feedback in IDEs
+   - GitHub annotations for PRs
+   - Fail CI for new code
 3. **Track progress**:
-    - Easy to see remaining work
-    - Incentivise completion
+   - Easy to see remaining work
+   - Incentivise completion
 
 </v-clicks>
 
 ::right::
 
-<div v-click="[5, 6]">
+<div v-click="[6, 7]" class="mt-35">
 
 ```ts twoslash
-import { User } from './user'
+import { User } from "./user";
 ```
+
+</div>
+
+<div v-click="[7, 8]" class="mt-0">
+
+![img.png](./img_1.png)
 
 </div>
 
@@ -285,98 +446,280 @@ import { User } from './user'
 }
 </style>
 
+<!--
+A good migration strategy:
+- identify deprecated code. a function that checks if a file has legacy patterns. it can be a simple script.
+- ideally with IDE feedback
+- some checks are only possible in CI, use GitHub annotations and fail CI
+- track progress to show what's left and motivate engineers
+-->
+
+---
+layout: two-cols-header
+layoutClass: gap-x-8
 ---
 
-## 2. Lint Rules to Prevent Regression
+# Our Approach at Accurx
 
-Once migrated, prevent old patterns from coming back:
+::left::
 
-```js
-// eslint.config.js
-export default [
-  {
-    rules: {
-      '@typescript-eslint/consistent-type-imports': 'error',
-      '@typescript-eslint/consistent-type-exports': 'error',
+<v-clicks depth="2">
+
+- ESLint rules
+- Custom ESLint rules
+- Other tools (Knip for dead code)
+- Custom scripts (`find -name` or `grep`)
+- Define code areas by domain
+- Calculate health scores
+
+</v-clicks>
+
+::right::
+
+<v-click at="1">
+
+````md magic-move {at:2}
+```json
+{
+  "migrations": [
+    {
+      "file": "domains/conversations/Message.tsx",
+      "group": "Eslint: consistent-type-imports",
+      "occurrences": 3
     }
-  }
-]
-```
-
-- Error on old patterns in new code
-- Can start as `warn` and escalate to `error`
-
----
-
-## 3. Track Progress with Dashboards
-
-Visualize migration status across the codebase:
-
-- Files migrated vs remaining
-- Progress per team/package
-- Burndown charts
-
-Tools:
-- Custom scripts + spreadsheets
-- Grafana dashboards
-- GitHub Projects for tracking
-
----
-
-## 4. Divide and Delegate
-
-Assign ownership to teams:
-
-| Team | Package | Status |
-|------|---------|--------|
-| Platform | @accurx/core | ✅ Done |
-| Frontend | @accurx/design | 🔄 In Progress |
-| Backend | @accurx/api | ⏳ Not Started |
-
-- Each team migrates code they own
-- Set deadlines per team
-- Provide codemods and documentation
-
----
-
-## 5. CI Gates for Changed Files
-
-New code must follow new patterns
-
-```yaml {*|3|4|5}
-- name: Check migration compliance
-  steps:
-     - run: FILES=$(git diff --name-only origin/main)
-     - run: eslint $FILES
-     - use: github-annotations
-```
-
-
----
-
-## 6. Deprecation Warnings
-
-For runtime migrations, warn before removing:
-
-```ts
-/** @deprecated Use `fetchUser` instead. Will be removed in v3.0 */
-export function getUser(id: string) {
-  console.warn('getUser is deprecated, use fetchUser instead')
-  return fetchUser(id)
+  ]
 }
 ```
 
-- Gives teams time to migrate
-- Makes usage visible in logs/monitoring
+```json {8-12}
+{
+  "migrations": [
+    {
+      "file": "domains/conversations/Message.tsx",
+      "group": "Eslint: consistent-type-imports",
+      "occurrences": 3
+    },
+    {
+      "file": "domains/user/UserProfile.ts",
+      "group": "Eslint: @accurx/no-deprecated-table",
+      "occurrences": 1
+    }
+  ]
+}
+```
+
+```json {13-16}
+{
+  "migrations": [
+    {
+      "file": "domains/conversations/Message.tsx",
+      "group": "Eslint: consistent-type-imports",
+      "occurrences": 3
+    },
+    {
+      "file": "domains/user/UserProfile.ts",
+      "group": "Eslint: @accurx/no-deprecated-table",
+      "occurrences": 1
+    },
+    {
+      "file": "domains/triage/Old.tsx",
+      "group": "Knip: unused-file"
+    }
+  ]
+}
+```
+
+```json {17-20}
+{
+  "migrations": [
+    {
+      "file": "domains/conversations/Message.tsx",
+      "group": "Eslint: consistent-type-imports",
+      "occurrences": 3
+    },
+    {
+      "file": "domains/user/UserProfile.ts",
+      "group": "Eslint: @accurx/no-deprecated-table",
+      "occurrences": 1
+    },
+    {
+      "file": "domains/triage/Old.tsx",
+      "group": "Knip: unused-file"
+    },
+    {
+      "file": "domains/scribe/legacy.test.tsx",
+      "group": "Script: migrate-to-vitest"
+    }
+  ]
+}
+```
+
+```json {2-8|6}
+{
+  "areas": [
+    {
+      "name": "Conversation",
+      "paths": ["domains/conversation/**/*"],
+      "healthScore": 90.5
+    }
+  ],
+  "migrations": [
+    {
+      "file": "domains/conversations/Message.tsx",
+      "group": "Eslint: consistent-type-imports",
+      "occurrences": 3
+    },
+    {
+      "file": "domains/user/UserProfile.ts",
+      "group": "Eslint: @accurx/no-deprecated-table",
+      "occurrences": 1
+    },
+    {
+      "file": "domains/triage/Old.tsx",
+      "group": "Knip: unused-file"
+    },
+    {
+      "file": "domains/scribe/legacy.test.tsx",
+      "group": "Script: migrate-to-vitest"
+    }
+  ]
+}
+```
+````
+
+</v-click>
+
+<!--
+We track multiple migrations in Accurx.
+- We use ESLint rules for common patterns.
+- Create custom ESLint rules for project-specific patterns.
+- Any other tools such as Knip for unused code.
+- Or even custom scripts such as file name patterns.
+- We aggregate results into a JSON report.
+- We define code areas by domain and calculate health scores.
+-->
+
+---
+
+# Visualise in a Dashboard
+
+We use Grafana to visualise migration progress.
+
+<v-switch>
+<template #1>
+
+**Track each migration's progress**
+
+![.img_2.png](./img_2.png)
+
+</template>
+<template #2>
+
+**Overall health score across domains**
+
+![.img_3.png](./img_4.png)
+
+</template>
+
+<template #3>
+
+**Files needing migration**
+
+<div class="dashboard-table">
+  <div class="table-header">Files grouped by domain</div>
+  <div class="area-row collapsed">
+    <span class="chevron">+</span>
+    <span class="area-name">Conversation</span>
+  </div>
+  <div class="area-row collapsed">
+    <span class="chevron">+</span>
+    <span class="area-name">User</span>
+  </div>
+  <div class="area-row expanded">
+    <span class="chevron">-</span>
+    <span class="area-name">Triage</span>
+  </div>
+  <div class="files-table">
+    <div class="files-header">
+      <span class="col-file">file</span>
+      <span class="col-group">group</span>
+      <span class="col-count">occurrences</span>
+    </div>
+    <div class="file-row">
+      <span class="col-file">src/domains/triage/components/TriageList.tsx</span>
+      <span class="col-group">Eslint: consistent-type-imports</span>
+      <span class="col-count">3</span>
+    </div>
+    <div class="file-row">
+      <span class="col-file">src/domains/triage/Old.tsx</span>
+      <span class="col-group">Knip: unused-file</span>
+      <span class="col-count">1</span>
+    </div>
+    <div class="file-row">
+      <span class="col-file">src/domains/triage/legacy.test.tsx</span>
+      <span class="col-group">Script: migrate-to-vitest</span>
+      <span class="col-count">1</span>
+    </div>
+  </div>
+</div>
+
+</template>
+
+</v-switch>
+
+<style>
+.dashboard-table {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  /*font-size: 0.7rem;*/
+  overflow: hidden;
+}
+.table-header {
+  padding: 0.75rem 1rem;
+  color: #e6edf3;
+  border-bottom: 1px solid #30363d;
+}
+.area-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #21262d;
+  color: #e6edf3;
+}
+.chevron {
+  color: #7d8590;
+  width: 1rem;
+}
+.area-name {
+  font-weight: 500;
+}
+.files-table {
+  background: #161b22;
+  margin-left: 1.5rem;
+}
+.files-header {
+  display: flex;
+  padding: 0.4rem 1rem;
+  color: #7d8590;
+  border-bottom: 1px solid #30363d;
+}
+.file-row {
+  display: flex;
+  padding: 0.4rem 1rem;
+  border-bottom: 1px solid #21262d;
+  color: #e6edf3;
+}
+.col-file { flex: 2; }
+.col-group { flex: 1.5; color: #7d8590; }
+.col-count { flex: 0.3; text-align: right; }
+</style>
+
+<!--
+It's always nice to have a visual representation so teams can see their progress.
+-->
 
 ---
 
 # Summary
-
-1. **Don't do big-bang migrations** - they're risky and hard to review
-2. **Use codemods** - automate the transformation
-3. **Add lint rules** - prevent regression
-4. **Track progress** - visualize with dashboards
-5. **Delegate to teams** - they own their code
-6. **Gate CI** - enforce new patterns in new code
-7. **Deprecate gradually** - warn before removing
