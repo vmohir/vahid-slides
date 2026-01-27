@@ -610,14 +610,75 @@ We use Grafana to visualise migration progress.
 
 **Track each migration's progress**
 
-![.img_2.png](./img_2.png)
+<div class="heatmap">
+  <div class="heatmap-row">
+    <span class="heatmap-label">Eslint: @accurx/no-deprecated-text</span>
+    <span class="heatmap-cells">
+<i style=" background-image: radial-gradient( rgba(115, 191, 105, 0.95) 10%, rgba(115, 191, 105, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(122, 193, 102, 0.95) 10%, rgba(122, 193, 102, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(129, 194, 98, 0.95) 10%, rgba(129, 194, 98, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(136, 196, 95, 0.95) 10%, rgba(136, 196, 95, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(143, 197, 92, 0.95) 10%, rgba(143, 197, 92, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(150, 199, 89, 0.95) 10%, rgba(150, 199, 89, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(157, 200, 86, 0.95) 10%, rgba(157, 200, 86, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(164, 201, 83, 0.95) 10%, rgba(164, 201, 83, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(170, 202, 80, 0.95) 10%, rgba(170, 202, 80, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(176, 202, 77, 0.95) 10%, rgba(176, 202, 77, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(183, 203, 75, 0.95) 10%, rgba(183, 203, 75, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(189, 203, 72, 0.95) 10%, rgba(189, 203, 72, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(194, 203, 70, 0.95) 10%, rgba(194, 203, 70, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(200, 203, 68, 0.95) 10%, rgba(200, 203, 68, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(205, 202, 66, 0.95) 10%, rgba(205, 202, 66, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(210, 201, 65, 0.95) 10%, rgba(210, 201, 65, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(214, 199, 63, 0.95) 10%, rgba(214, 199, 63, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(219, 197, 62, 0.95) 10%, rgba(219, 197, 62, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(223, 195, 61, 0.95) 10%, rgba(223, 195, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(226, 192, 61, 0.95) 10%, rgba(226, 192, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(229, 189, 61, 0.95) 10%, rgba(229, 189, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(232, 185, 61, 0.95) 10%, rgba(232, 185, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(235, 181, 61, 0.95) 10%, rgba(235, 181, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(237, 176, 62, 0.95) 10%, rgba(237, 176, 62, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(238, 171, 63, 0.95) 10%, rgba(238, 171, 63, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(240, 165, 64, 0.95) 10%, rgba(240, 165, 64, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(241, 160, 65, 0.95) 10%, rgba(241, 160, 65, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(242, 153, 67, 0.95) 10%, rgba(242, 153, 67, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 147, 68, 0.95) 10%, rgba(243, 147, 68, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(244, 133, 72, 0.95) 10%, rgba(244, 133, 72, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(244, 126, 75, 0.95) 10%, rgba(244, 126, 75, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(244, 112, 79, 0.95) 10%, rgba(244, 112, 79, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 104, 82, 0.95) 10%, rgba(243, 104, 82, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 96, 84, 0.95) 10%, rgba(243, 96, 84, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 89, 87, 0.95) 10%, rgba(243, 89, 87, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(242, 77, 91, 0.95) 10%, rgba(242, 77, 91, 0.55) ); " />
+    </span>
+    <span class="heatmap-count" style="color:#f85149">90</span>
+  </div>
+  <div class="heatmap-row">
+    <span class="heatmap-label">Eslint: @accurx/no-bootstrap-utilities</span>
+    <span class="heatmap-cells">
+<i style=" background-image: radial-gradient( rgba(115, 191, 105, 0.95) 10%, rgba(115, 191, 105, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(122, 193, 102, 0.95) 10%, rgba(122, 193, 102, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(129, 194, 98, 0.95) 10%, rgba(129, 194, 98, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(136, 196, 95, 0.95) 10%, rgba(136, 196, 95, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(143, 197, 92, 0.95) 10%, rgba(143, 197, 92, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(150, 199, 89, 0.95) 10%, rgba(150, 199, 89, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(157, 200, 86, 0.95) 10%, rgba(157, 200, 86, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(164, 201, 83, 0.95) 10%, rgba(164, 201, 83, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(170, 202, 80, 0.95) 10%, rgba(170, 202, 80, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(176, 202, 77, 0.95) 10%, rgba(176, 202, 77, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(183, 203, 75, 0.95) 10%, rgba(183, 203, 75, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(189, 203, 72, 0.95) 10%, rgba(189, 203, 72, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(194, 203, 70, 0.95) 10%, rgba(194, 203, 70, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(200, 203, 68, 0.95) 10%, rgba(200, 203, 68, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(205, 202, 66, 0.95) 10%, rgba(205, 202, 66, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(210, 201, 65, 0.95) 10%, rgba(210, 201, 65, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(214, 199, 63, 0.95) 10%, rgba(214, 199, 63, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(219, 197, 62, 0.95) 10%, rgba(219, 197, 62, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(223, 195, 61, 0.95) 10%, rgba(223, 195, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(226, 192, 61, 0.95) 10%, rgba(226, 192, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(229, 189, 61, 0.95) 10%, rgba(229, 189, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(232, 185, 61, 0.95) 10%, rgba(232, 185, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(235, 181, 61, 0.95) 10%, rgba(235, 181, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(237, 176, 62, 0.95) 10%, rgba(237, 176, 62, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(238, 171, 63, 0.95) 10%, rgba(238, 171, 63, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(240, 165, 64, 0.95) 10%, rgba(240, 165, 64, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(241, 160, 65, 0.95) 10%, rgba(241, 160, 65, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(242, 153, 67, 0.95) 10%, rgba(242, 153, 67, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 147, 68, 0.95) 10%, rgba(243, 147, 68, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(244, 133, 72, 0.95) 10%, rgba(244, 133, 72, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(244, 126, 75, 0.95) 10%, rgba(244, 126, 75, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(244, 112, 79, 0.95) 10%, rgba(244, 112, 79, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 104, 82, 0.95) 10%, rgba(243, 104, 82, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 96, 84, 0.95) 10%, rgba(243, 96, 84, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 89, 87, 0.95) 10%, rgba(243, 89, 87, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(242, 77, 91, 0.95) 10%, rgba(242, 77, 91, 0.55) ); " />
+    </span>
+    <span class="heatmap-count" style="color:#d4a72c">32</span>
+  </div>
+  <div class="heatmap-row">
+    <span class="heatmap-label">Eslint: consistent-type-imports</span>
+    <span class="heatmap-cells">
+<i style=" background-image: radial-gradient( rgba(115, 191, 105, 0.95) 10%, rgba(115, 191, 105, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(122, 193, 102, 0.95) 10%, rgba(122, 193, 102, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(129, 194, 98, 0.95) 10%, rgba(129, 194, 98, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(136, 196, 95, 0.95) 10%, rgba(136, 196, 95, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(143, 197, 92, 0.95) 10%, rgba(143, 197, 92, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(150, 199, 89, 0.95) 10%, rgba(150, 199, 89, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(157, 200, 86, 0.95) 10%, rgba(157, 200, 86, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(164, 201, 83, 0.95) 10%, rgba(164, 201, 83, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(170, 202, 80, 0.95) 10%, rgba(170, 202, 80, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(176, 202, 77, 0.95) 10%, rgba(176, 202, 77, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(183, 203, 75, 0.95) 10%, rgba(183, 203, 75, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(189, 203, 72, 0.95) 10%, rgba(189, 203, 72, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(194, 203, 70, 0.95) 10%, rgba(194, 203, 70, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(200, 203, 68, 0.95) 10%, rgba(200, 203, 68, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(205, 202, 66, 0.95) 10%, rgba(205, 202, 66, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(210, 201, 65, 0.95) 10%, rgba(210, 201, 65, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(214, 199, 63, 0.95) 10%, rgba(214, 199, 63, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(219, 197, 62, 0.95) 10%, rgba(219, 197, 62, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(223, 195, 61, 0.95) 10%, rgba(223, 195, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(226, 192, 61, 0.95) 10%, rgba(226, 192, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(229, 189, 61, 0.95) 10%, rgba(229, 189, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(232, 185, 61, 0.95) 10%, rgba(232, 185, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(235, 181, 61, 0.95) 10%, rgba(235, 181, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(237, 176, 62, 0.95) 10%, rgba(237, 176, 62, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(238, 171, 63, 0.95) 10%, rgba(238, 171, 63, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(240, 165, 64, 0.95) 10%, rgba(240, 165, 64, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(241, 160, 65, 0.95) 10%, rgba(241, 160, 65, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(242, 153, 67, 0.95) 10%, rgba(242, 153, 67, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 147, 68, 0.95) 10%, rgba(243, 147, 68, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(244, 133, 72, 0.95) 10%, rgba(244, 133, 72, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(244, 126, 75, 0.95) 10%, rgba(244, 126, 75, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(244, 112, 79, 0.95) 10%, rgba(244, 112, 79, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 104, 82, 0.95) 10%, rgba(243, 104, 82, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 96, 84, 0.95) 10%, rgba(243, 96, 84, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 89, 87, 0.95) 10%, rgba(243, 89, 87, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(242, 77, 91, 0.95) 10%, rgba(242, 77, 91, 0.55) ); " />
+    </span>
+    <span class="heatmap-count" style="color:#7cb342">19</span>
+  </div>
+  <div class="heatmap-row">
+    <span class="heatmap-label">Knip: unused-file</span>
+    <span class="heatmap-cells">
+<i style=" background-image: radial-gradient( rgba(115, 191, 105, 0.95) 10%, rgba(115, 191, 105, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(122, 193, 102, 0.95) 10%, rgba(122, 193, 102, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(129, 194, 98, 0.95) 10%, rgba(129, 194, 98, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(136, 196, 95, 0.95) 10%, rgba(136, 196, 95, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(143, 197, 92, 0.95) 10%, rgba(143, 197, 92, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(150, 199, 89, 0.95) 10%, rgba(150, 199, 89, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(157, 200, 86, 0.95) 10%, rgba(157, 200, 86, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(164, 201, 83, 0.95) 10%, rgba(164, 201, 83, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(170, 202, 80, 0.95) 10%, rgba(170, 202, 80, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(176, 202, 77, 0.95) 10%, rgba(176, 202, 77, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(183, 203, 75, 0.95) 10%, rgba(183, 203, 75, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(189, 203, 72, 0.95) 10%, rgba(189, 203, 72, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(194, 203, 70, 0.95) 10%, rgba(194, 203, 70, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(200, 203, 68, 0.95) 10%, rgba(200, 203, 68, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(205, 202, 66, 0.95) 10%, rgba(205, 202, 66, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(210, 201, 65, 0.95) 10%, rgba(210, 201, 65, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(214, 199, 63, 0.95) 10%, rgba(214, 199, 63, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(219, 197, 62, 0.95) 10%, rgba(219, 197, 62, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(223, 195, 61, 0.95) 10%, rgba(223, 195, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(226, 192, 61, 0.95) 10%, rgba(226, 192, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(229, 189, 61, 0.95) 10%, rgba(229, 189, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(232, 185, 61, 0.95) 10%, rgba(232, 185, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(235, 181, 61, 0.95) 10%, rgba(235, 181, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(237, 176, 62, 0.95) 10%, rgba(237, 176, 62, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(238, 171, 63, 0.95) 10%, rgba(238, 171, 63, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(240, 165, 64, 0.95) 10%, rgba(240, 165, 64, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(241, 160, 65, 0.95) 10%, rgba(241, 160, 65, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(242, 153, 67, 0.95) 10%, rgba(242, 153, 67, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 147, 68, 0.95) 10%, rgba(243, 147, 68, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(244, 133, 72, 0.95) 10%, rgba(244, 133, 72, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(244, 126, 75, 0.95) 10%, rgba(244, 126, 75, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(244, 112, 79, 0.95) 10%, rgba(244, 112, 79, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 104, 82, 0.95) 10%, rgba(243, 104, 82, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 96, 84, 0.95) 10%, rgba(243, 96, 84, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 89, 87, 0.95) 10%, rgba(243, 89, 87, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(242, 77, 91, 0.95) 10%, rgba(242, 77, 91, 0.55) ); " />
+    </span>
+    <span class="heatmap-count" style="color:#7cb342">15</span>
+  </div>
+  <div class="heatmap-row">
+    <span class="heatmap-label">Script: migrate-to-vitest</span>
+    <span class="heatmap-cells">
+<i style=" background-image: radial-gradient( rgba(115, 191, 105, 0.95) 10%, rgba(115, 191, 105, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(122, 193, 102, 0.95) 10%, rgba(122, 193, 102, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(129, 194, 98, 0.95) 10%, rgba(129, 194, 98, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(136, 196, 95, 0.95) 10%, rgba(136, 196, 95, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(143, 197, 92, 0.95) 10%, rgba(143, 197, 92, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(150, 199, 89, 0.95) 10%, rgba(150, 199, 89, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(157, 200, 86, 0.95) 10%, rgba(157, 200, 86, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(164, 201, 83, 0.95) 10%, rgba(164, 201, 83, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(170, 202, 80, 0.95) 10%, rgba(170, 202, 80, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(176, 202, 77, 0.95) 10%, rgba(176, 202, 77, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(183, 203, 75, 0.95) 10%, rgba(183, 203, 75, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(189, 203, 72, 0.95) 10%, rgba(189, 203, 72, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(194, 203, 70, 0.95) 10%, rgba(194, 203, 70, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(200, 203, 68, 0.95) 10%, rgba(200, 203, 68, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(205, 202, 66, 0.95) 10%, rgba(205, 202, 66, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(210, 201, 65, 0.95) 10%, rgba(210, 201, 65, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(214, 199, 63, 0.95) 10%, rgba(214, 199, 63, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(219, 197, 62, 0.95) 10%, rgba(219, 197, 62, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(223, 195, 61, 0.95) 10%, rgba(223, 195, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(226, 192, 61, 0.95) 10%, rgba(226, 192, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(229, 189, 61, 0.95) 10%, rgba(229, 189, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(232, 185, 61, 0.95) 10%, rgba(232, 185, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(235, 181, 61, 0.95) 10%, rgba(235, 181, 61, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(237, 176, 62, 0.95) 10%, rgba(237, 176, 62, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(238, 171, 63, 0.95) 10%, rgba(238, 171, 63, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(240, 165, 64, 0.95) 10%, rgba(240, 165, 64, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(241, 160, 65, 0.95) 10%, rgba(241, 160, 65, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(242, 153, 67, 0.95) 10%, rgba(242, 153, 67, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 147, 68, 0.95) 10%, rgba(243, 147, 68, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(244, 133, 72, 0.95) 10%, rgba(244, 133, 72, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(244, 126, 75, 0.95) 10%, rgba(244, 126, 75, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(244, 112, 79, 0.95) 10%, rgba(244, 112, 79, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 104, 82, 0.95) 10%, rgba(243, 104, 82, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 96, 84, 0.95) 10%, rgba(243, 96, 84, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(243, 89, 87, 0.95) 10%, rgba(243, 89, 87, 0.55) ); " /> <i style=" background-image: radial-gradient( rgba(242, 77, 91, 0.95) 10%, rgba(242, 77, 91, 0.55) ); " />
+    </span>
+    <span class="heatmap-count" style="color:#3fb950">14</span>
+  </div>
+</div>
 
 </template>
 <template #2>
 
 **Overall health score across domains**
 
-![.img_3.png](./img_4.png)
+<div class="gauges">
+  <div class="gauge">
+    <svg viewBox="0 0 100 60" class="gauge-svg">
+      <path class="gauge-bg" d="M10,50 A40,40 0 1,1 90,50" />
+      <path class="gauge-fill orange" d="M10,50 A40,40 0 1,1 90,50" style="stroke-dasharray: 70.2, 125.6" />
+    </svg>
+    <div class="gauge-value orange">64.2%</div>
+    <div class="gauge-label">Scribe</div>
+  </div>
+  <div class="gauge">
+    <svg viewBox="0 0 100 60" class="gauge-svg">
+      <path class="gauge-bg" d="M10,50 A40,40 0 1,1 90,50" />
+      <path class="gauge-fill yellow" d="M10,50 A40,40 0 1,1 90,50" style="stroke-dasharray: 86.5, 125.6" />
+    </svg>
+    <div class="gauge-value yellow">76.5%</div>
+    <div class="gauge-label">Conversation</div>
+  </div>
+  <div class="gauge">
+    <svg viewBox="0 0 100 60" class="gauge-svg">
+      <path class="gauge-bg" d="M10,50 A40,40 0 1,1 90,50" />
+      <path class="gauge-fill green" d="M10,50 A40,40 0 1,1 90,50" style="stroke-dasharray: 108.8, 125.6" />
+    </svg>
+    <div class="gauge-value green">88.8%</div>
+    <div class="gauge-label">Patient</div>
+  </div>
+</div>
 
 </template>
 
@@ -714,6 +775,88 @@ We use Grafana to visualise migration progress.
 .col-file { flex: 2; }
 .col-group { flex: 1.5; color: #7d8590; }
 .col-count { flex: 0.3; text-align: right; }
+
+/* Heatmap styles */
+.heatmap {
+  background: #0d1117;
+  border-radius: 6px;
+  padding: 0.75rem;
+}
+.heatmap-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.1rem 0;
+}
+.heatmap-label {
+  color: #e6edf3;
+  min-width: 320px;
+  text-align: left;
+}
+.heatmap-cells {
+  display: flex;
+  gap: 2px;
+}
+.heatmap-cells > i {
+  display: inline-block;
+  width: 11px;
+  height: 16px;
+  border-radius: 2px;
+}
+.heatmap-row:nth-child(2) > .heatmap-cells > i:nth-child(n + 25),
+.heatmap-row:nth-child(3) > .heatmap-cells > i:nth-child(n + 16),
+.heatmap-row:nth-child(4) > .heatmap-cells > i:nth-child(n + 12),
+.heatmap-row:nth-child(5) > .heatmap-cells > i:nth-child(n + 10) {
+  opacity: 0.3;
+}
+.heatmap-count {
+  font-family: "Fira Code", monospace;
+  min-width: 30px;
+  text-align: right;
+}
+
+/* Gauge styles */
+.gauges {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+}
+.gauge {
+  text-align: center;
+  width: 250px;
+}
+.gauge-svg {
+  width: 250px;
+  height: 150px;
+
+}
+.gauge-bg {
+  fill: none;
+  stroke: #21262d;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+.gauge-fill {
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+.gauge-fill.orange { stroke: #db6d28; }
+.gauge-fill.yellow { stroke: #d4a72c; }
+.gauge-fill.green { stroke: #3fb950; }
+.gauge-value {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: -3.5rem;
+}
+.gauge-value.orange { color: #db6d28; }
+.gauge-value.yellow { color: #d4a72c; }
+.gauge-value.green { color: #3fb950; }
+.gauge-label {
+  color: #7d8590;
+  margin-top: 0.25rem;
+}
 </style>
 
 <!--
@@ -723,3 +866,10 @@ It's always nice to have a visual representation so teams can see their progress
 ---
 
 # Summary
+
+- Detect deprecated patterns
+- Show in IDE and PRs
+- Fail CI only for changed files in PRs
+- Track progress over time
+- Domain-specific health scores
+- Visualise with charts
