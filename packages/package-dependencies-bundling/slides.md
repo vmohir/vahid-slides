@@ -31,6 +31,7 @@ layoutClass: gap-8
 > dependency resolution depends on install order
 
 Example:
+
 1. Install A-v1
 2. Install B-v1
 3. Update to A-v2
@@ -46,6 +47,7 @@ B-v1 --> Dep-v1
 A-v2 --> Dep-v2
 B-v2 --> Dep-v2
 ```
+
 ```sh
 A-v1 --> Dep-v1
 B-v1 --> Dep-v1
@@ -53,19 +55,8 @@ A-v2 --> Dep-v2
 B-v2 --> Dep-v2
 
 node_modules/
-├── A-v1/
-└── dep-v1/ # Hoisted
-```
-```sh
-A-v1 --> Dep-v1
-B-v1 --> Dep-v1
-A-v2 --> Dep-v2
-B-v2 --> Dep-v2
-
-node_modules/
-├── A-v1/
-├── B-v1/
-└── dep-v1/ # Hoisted
+├── A/ (v1)
+└── dep/ (v1) # Hoisted
 ```
 
 ```sh
@@ -75,12 +66,25 @@ A-v2 --> Dep-v2
 B-v2 --> Dep-v2
 
 node_modules/
-├── A-v2/
+├── A/ (v1)
+├── B/ (v1)
+└── dep/ (v1) # Hoisted
+```
+
+```sh
+A-v1 --> Dep-v1
+B-v1 --> Dep-v1
+A-v2 --> Dep-v2
+B-v2 --> Dep-v2
+
+node_modules/
+├── A/ (v2)
 │   └── node_modules/
-│       └── dep-v2/   
-├── B-v1/
-└── dep-v1/ # Hoisted
+│       └── dep/ (v2)
+├── B/ (v1)
+└── dep/ (v1) # Hoisted
 ```
+
 ```sh
 A-v1 --> Dep-v1
 B-v1 --> Dep-v1
@@ -88,13 +92,14 @@ A-v2 --> Dep-v2
 B-v2 --> Dep-v2
 
 node_modules/
-├── A-v2/
+├── A/ (v2)
 │   └── node_modules/
-│       └── dep-v2/   
-└── B-v2/
+│       └── dep/ (v2)
+└── B/ (v2)
     └── node_modules/
-        └── dep-v2/
+        └── dep/ (v2)
 ```
+
 ```sh
 A-v1 --> Dep-v1
 B-v1 --> Dep-v1
@@ -102,9 +107,9 @@ A-v2 --> Dep-v2
 B-v2 --> Dep-v2
 
 node_modules/
-├── A-v2/   
-├── B-v2/
-└── dep-v2/ # Hoisted
+├── A/ (v2)
+├── B/ (v2)
+└── dep/ (v2) # Hoisted
 ```
 ````
 
@@ -113,8 +118,11 @@ node_modules/
 ## How to find duplicated dependencies
 
 - `npm find-dupes`: shows all duplicated packages
-- `npm ls <package>`: shows dependency tree for a package
-- `npx node-modules-inspector`: Node modules inspector shows a visual tree of dependencies and duplicates
+- `npm ls <package>`: shows dependency tree for a package Examples:
+  - `npm ls downshift`: deduped
+  - `npm ls es-toolit`: duplicated
+- `npx node-modules-inspector`: Node modules inspector shows a visual tree of
+  dependencies and duplicates
 
 <img v-click src="./multiple-versions.png" alt="" style="max-width: 650px; margin: 0 auto;" />
 
@@ -159,20 +167,24 @@ layout: intro
 
 ## NPM Dependency Types for libraries
 
-- **dependencies**: you **don't** expect consumers to have these. npm installs them if missing.
-- **peerDependencies**: you expect consumers to have these. npm installs them if missing.
-    - npm warn/error on version conflicts.
-    - > For example, `^v1.0.0` and `^v2.0.0` are non-overlapping ranges.
+- **dependencies**: you **don't** expect consumers to have these. npm installs
+  them if missing.
+- **peerDependencies**: you expect consumers to have these. npm installs them if
+  missing.
+  - npm warn/error on version conflicts.
+  - > For example, `^v1.0.0` and `^v2.0.0` are non-overlapping ranges.
 - **devDependencies**: dev-time only, not shipped to consumers.
-    - Without peers in devDependencies, you can't run tests or dev server.
-    - In non-library projects, devDependencies behave like dependencies.
-- **peerDependenciesMeta**: mark peers as optional. npm won't install them if missing.
+  - Without peers in devDependencies, you can't run tests or dev server.
+  - In non-library projects, devDependencies behave like dependencies.
+- **peerDependenciesMeta**: mark peers as optional. npm won't install them if
+  missing.
 
 <v-click>
 
 - **optionalDependencies**: like dependencies, but install failures are ignored.
-    - Can be omitted by `npm install --no-optional`
-    - For example `playwright` is optional. This can speed up CI installs for build.
+  - Can be omitted by `npm install --no-optional`
+  - For example `playwright` is optional. This can speed up CI installs for
+    build.
 
 </v-click>
 
@@ -181,7 +193,6 @@ strong {
   color: #ffc870;
 }
 </style>
-
 
 ---
 
@@ -194,6 +205,7 @@ strong {
   "exports": { ".": "./dist/index.js" } # import {} from '@accurx/design'
 }
 ```
+
 ```json
 {
   "name": "@accurx/design",
@@ -232,7 +244,6 @@ strong {
   }
 }
 ```
-
 
 ```json
 {
@@ -309,10 +320,14 @@ Making the right decision for your dependencies
 
 [e18e.dev article on bundling dependencies](https://e18e.dev/blog/bundling-dependencies)
 
-- <span class="text-yellow">**inline** a dependency:</span> take the source of it and copy it into our codebase
-- <span class="text-yellow">**pre-bundle** a dependency:</span> (or just "bundle"): build library with a bundler like vite before publishing it.
+- <span class="text-yellow">**inline** a dependency:</span> take the source of
+  it and copy it into our codebase
+- <span class="text-yellow">**pre-bundle** a dependency:</span> (or just
+  "bundle"): build library with a bundler like vite before publishing it.
 
-In both cases, the dependency is no longer taken from npm and is instead stored in our published package output as if we wrote it ourselves (and are "dependency free").
+In both cases, the dependency is no longer taken from npm and is instead stored
+in our published package output as if we wrote it ourselves (and are "dependency
+free").
 
 ---
 
@@ -364,10 +379,12 @@ node_modules/
 ## When to Bundle? (almost never!)
 
 Bundle (include in your dist):
+
 - Using only a small part of a large dependency
 - Dependency is CommonJS and you're targeting browsers
-    - Because browsers can't load CommonJS
-    - If this is the case, ideally you would either move away from the package to an ESM alternative
+  - Because browsers can't load CommonJS
+  - If this is the case, ideally you would either move away from the package to
+    an ESM alternative
 
 <v-click>
 
@@ -397,6 +414,8 @@ export default defineConfig({
 
 # Summary
 
-- Use **peerDependencies** for libraries when you expect consumers to have them to avoid duplicates.
+- Use **peerDependencies** for libraries when you expect consumers to have them
+  to avoid duplicates.
 - Avoid bundling dependencies unless absolutely necessary.
-- Use `npm dedupe` and `node-modules-inspector` to resolve duplicate dependencies and more.
+- Use `npm dedupe` and `node-modules-inspector` to resolve duplicate
+  dependencies and more.

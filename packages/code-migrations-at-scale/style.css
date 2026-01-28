@@ -42,5 +42,5 @@ strong {
   }
 }
 .slidev-layout a {
-  border: none;
+  border-bottom: none;
 }

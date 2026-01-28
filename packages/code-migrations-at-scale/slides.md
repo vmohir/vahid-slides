@@ -402,7 +402,7 @@ layout: two-cols-header
 layoutClass: gap-x-8
 ---
 
-# How a good migration strategy looks
+# How a Good Migration Strategy Looks
 
 ::left::
 
