@@ -28,7 +28,7 @@ h1 {
     position: relative;
 }
 .the-gradient {
-    background-image: linear-gradient(to right, #a4ffea, white);
+    background-image: linear-gradient(to right, #00d9a7, white);
     color: transparent;
     background-clip: text;
     position: absolute;
@@ -39,7 +39,13 @@ h1 {
 </style>
 
 <!--
-How we tackle code migrations at scale - moving from legacy patterns to modern ones across large codebases.
+Hi, I'm Vahid, a frontend engineer in the Developer Experience team at Accurx.
+
+We're hiring many new engineers, mostly backend but also frontend in the near future.
+
+The company is investing heavily in developer experience to ensure engineers are as effective as possible.
+
+In this presentation, I'll share how we tackle code migrations across large codebases.
 -->
 
 ---
@@ -49,6 +55,12 @@ hideInToc: true
 # Agenda
 
 <Toc minDepth="1" maxDepth="1" />
+
+<!--
+We'll first see what a tech radar is and why it's useful.
+
+Then we'll discuss migration challenges and how we approach them at Accurx.
+-->
 
 ---
 
@@ -207,17 +219,18 @@ opacity: 0.7;
 </style>
 
 <!--
-At Accurx we have a tech radar in the frontend guild
-to standardise technology choices for new projects.
+We have a tech radar in the frontend guild to standardise technology choices for new projects.
 
-It defines WHAT to adopt, but not HOW to migrate existing code.
+It defines WHAT to adopt, so engineers know which modern tools to use for new code.
+
+But it doesn't help us with HOW to migrate existing code.
 
 We need a strategy for transitioning legacy codebases.
 -->
 
 ---
 layout: two-cols-header
-layoutClass: gap-x-8
+layoutClass: gap-x-0
 ---
 
 # Why Code Migration is Hard at Scale
@@ -242,7 +255,7 @@ You can't do migrations in one big commit.
 
 #### One exception: **code formatting**
 
-Can use `.git-blame-ignore-revs` to hide formatting commits
+Use `.git-blame-ignore-revs` to hide formatting commits
 
 </v-click>
 
@@ -338,7 +351,6 @@ fill: #8b949e;
   color: #f85149;
 }
 .git-blame {
-  margin: 0.5rem 0 0.5rem 1.5rem;
   font-family: 'Fira Code', monospace;
   font-size: 0.6rem;
   background: #161b22;
@@ -369,9 +381,15 @@ fill: #8b949e;
 </style>
 
 <!--
-Big-bang migrations are tempting but risky.
-The only exception is purely cosmetic changes like formatting - git-blame-ignore-revs hides those commits from blame.
-But for semantic changes, we need a gradual approach.
+Although it's tempting to do migrations in one big commit.
+
+[click] It's hard to test
+[click] Hard to review
+[click] And you'll own the entire codebase from that point
+[click] Also, if something goes wrong, it's difficult to revert
+[click] And you'll face merge conflicts
+
+[click] The only exception is purely cosmetic changes. `.git-blame-ignore-revs` hides those commits from blame.
 -->
 
 ---
@@ -392,9 +410,19 @@ import { type User, UserService } from "./user";
 ```
 ````
 
+<style>
+.slidev-code-wrapper {
+--slidev-code-font-size: 18px;
+--slidev-code-line-height: 22px;
+}
+</style>
+
 <!--
-Simple example: adding explicit type imports for verbatimModuleSyntax.
-Thousands of files need this change - can't do it in one PR.
+Let's look at a simple example: we want to add explicit type imports to enable `verbatimModuleSyntax` in `tsconfig`.
+
+[click] Like this.
+
+It's a straightforward migration, but thousands of files need this change and we can't do it in one PR.
 -->
 
 ---
@@ -421,6 +449,7 @@ layoutClass: gap-x-8
 3. **Track progress**:
    - Easy to see remaining work
    - Incentivise completion
+   - Justify tech investments
 
 </v-clicks>
 
@@ -447,11 +476,15 @@ import { User } from "./user";
 </style>
 
 <!--
-A good migration strategy:
-- identify deprecated code. a function that checks if a file has legacy patterns. it can be a simple script.
-- ideally with IDE feedback
-- some checks are only possible in CI, use GitHub annotations and fail CI
-- track progress to show what's left and motivate engineers
+Here are the key steps for a successful migration strategy:
+
+[click] First, identify deprecated code.
+[click] This can be a regular expression, a lint rule, or a function that detects legacy patterns in files.
+[click] Then, to facilitate gradual migration:
+[click] Ideally, we need IDE feedback. Engineers should see warnings or errors with guidance on how to migrate.
+[click] Some checks are only possible in CI. Use GitHub annotations for those. We use ReviewDog, which displays warnings in the GitHub UI just like IDEs do.
+[click] You can also fail CI only for changed files or changed lines. Again, we use ReviewDog. This way, our migration CI doesn't fail if untouched files contain deprecated patterns.
+[click] We also need to monitor progress to show what remains, [click] motivate engineers, and [click] justify tech investments.
 -->
 
 ---
@@ -590,13 +623,13 @@ layoutClass: gap-x-8
 </v-click>
 
 <!--
-We track multiple migrations in Accurx.
-- We use ESLint rules for common patterns.
-- Create custom ESLint rules for project-specific patterns.
-- Any other tools such as Knip for unused code.
-- Or even custom scripts such as file name patterns.
-- We aggregate results into a JSON report.
-- We define code areas by domain and calculate health scores.
+Here's how we implement this approach at Accurx.
+[click] We use ESLint rules for common patterns and convert the output to a simple JSON format.
+[click] We also create custom ESLint rules for project-specific patterns.
+[click] We use other tools such as Knip for unused code, again converting its output to the same JSON format.
+[click] We can even use custom scripts, such as file name pattern matching.
+[click] Then we aggregate the results into a unified JSON report,
+[click] define code areas by domain, and [click] calculate health scores.
 -->
 
 ---
@@ -860,7 +893,11 @@ We use Grafana to visualise migration progress.
 </style>
 
 <!--
-It's always nice to have a visual representation so teams can see their progress.
+It's valuable to have a visual representation so teams can track their progress.
+
+[click] We can monitor each migration over time
+[click] Define metrics for teams
+[click] And help engineers identify files that need attention
 -->
 
 ---

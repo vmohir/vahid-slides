@@ -341,7 +341,7 @@ node_modules/
         └── index.js
 ```
 
-```sh {3-4|7}
+```sh {2-4,7}
 node_modules/
 ├── your-package/
 │   ├── node_modules/
@@ -351,7 +351,7 @@ node_modules/
 └── dep-a@2/            # consumer's own dep-a (unmatched version)
 ```
 
-```sh {6-7|3-4|*}
+```sh {5-7,2-4}
 node_modules/
 ├── your-package/
 │   ├── node_modules/
