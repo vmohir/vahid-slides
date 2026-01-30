@@ -479,7 +479,7 @@ import { User } from "./user";
 Here are the key steps for a successful migration strategy:
 
 [click] First, identify deprecated code.
-[click] This can be a regular expression, a lint rule, or a function that detects legacy patterns in files.
+[click] This can be a regular expression, [click] a lint rule, [click] or a function that detects legacy patterns in files.
 [click] Then, to facilitate gradual migration:
 [click] Ideally, we need IDE feedback. Engineers should see warnings or errors with guidance on how to migrate.
 [click] Some checks are only possible in CI. Use GitHub annotations for those. We use ReviewDog, which displays warnings in the GitHub UI just like IDEs do.
