@@ -1,0 +1,17 @@
+{
+  "name": "frontend-frameworks-2026",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build --base /packages/code-migrations-at-scale/ --out ../../dist/packages/code-migrations-at-scale",
+    "dev": "slidev --open",
+    "start": "slidev --open",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "^52.9.1",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest",
+    "vue": "^3.5.24"
+  }
+}
