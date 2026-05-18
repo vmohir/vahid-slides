@@ -50,6 +50,8 @@ hideInToc: true
 
 # What a frontend framework consists of
 
+<v-clicks>
+
 - Change detection: `UI = func(state)`
 - Router
 - HTTP client
@@ -58,23 +60,38 @@ hideInToc: true
 - State manager
 - Others: From validator, asset manager, etc.
 
+</v-clicks>
+
+---
+layout: two-cols-header
+layoutClass: gap-x-8
 ---
 
 # Why do we have so many frontend frameworks?
 
-- **Angular**
+::left::
+
+![img_5.png](./img_5.png)
+
+::right::
+
 - **React**
 - **Vue**
+- **Angular**
 - **Svelte**
 - **Preact**
-- **Lit**
 - **Solid**
-- **Qwik**
+- **Lit**
 - **Astro**
+- **Qwik**
+- **HTMX**
+- **Alpine.js**
 
 ---
 
 # Change detection
+
+<v-click>
 
 Vanilla JS and jQuery:
 
@@ -82,17 +99,29 @@ Vanilla JS and jQuery:
 on(EVENT) => manipulate DOM
 ```
 
+</v-click>
+
+<v-click>
+
 Change detection frameworks:
 
 ```js
 UI = component(state);
 ```
 
+</v-click>
+
+<v-click>
+
 But how does the new UI get rendered when the state changes?
+
+</v-click>
+
+<v-clicks>
 
 - Dirty checking
 - Virtual DOM
-- Fine-grained reactivity
+- Fine-grained reactivity و </v-clicks>
 
 ---
 
@@ -245,14 +274,12 @@ function diff(oldH, newH) {
 
 # Dirty checking vs Virtual DOM
 
-<div></div>
-
 **Dirty checking:**
 
-- Simple to implement
+- Native DOM APIs (No recreating the DOM in memory)
+- Simpler to implement
 - One pass to update the DOM
 - Static content isn't checked
-- Native DOM APIs
 
 **Virtual DOM:**
 
@@ -271,10 +298,66 @@ With JSX, new DOM features aren't automatically supported.
 
 - Angular: dirty checking pioneer
 - React: virtual DOM pioneer
-- Vue: virtual DOM with optimisations (skips static content, etc.)
+- Vue: virtual DOM with optimisations (skips static content, no JSX, etc.)
 - Svelte: compile-time dirty checking (no runtime diffing)
 
 </v-clicks>
+
+---
+
+# Svelte: dirty checking at compile time
+
+````md magic-move
+```svelte
+<script>
+  let count = 0;
+</script>
+
+<h1>Static content</h1>
+<p>{count}</p>
+<button on:click={() => count++}>+</button>
+```
+
+```js {*|2-9|10-14}
+function mount(target) {
+  target.innerHTML = `<h1>Static content</h1>`;
+
+  const p = document.createElement("p");
+  p.textContent = count;
+
+  const btn = document.createElement("button");
+  btn.textContent = "+";
+  target.append(h1, p, btn);
+
+  btn.addEventListener("click", () => {
+    count++;
+    update(1);
+  });
+}
+```
+
+```js {17-19|*}
+function mount(target) {
+  target.innerHTML = `<h1>Static content</h1>`;
+
+  const p = document.createElement("p");
+  p.textContent = count;
+
+  const btn = document.createElement("button");
+  btn.textContent = "+";
+  target.append(h1, p, btn);
+
+  btn.addEventListener("click", () => {
+    count++;
+    update(count);
+  });
+}
+
+function update(count) {
+  p.textContent = count;
+}
+```
+````
 
 ---
 
@@ -282,6 +365,7 @@ With JSX, new DOM features aren't automatically supported.
 
 - Monkey-patching every API. Zone.js -> Angular
 - `setState` + Proxy events `SyntheticEvent` -> React
+- Compile-time analysis -> Svelte
 
 <!--
 - Without zone.js, Angular wouldn't know when state is changed.

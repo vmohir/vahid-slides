@@ -44,3 +44,6 @@ strong {
 .slidev-layout a {
   border-bottom: none;
 }
+.slidev-layout h1 + p {
+  opacity: 1;
+}
