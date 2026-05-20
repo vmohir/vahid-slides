@@ -121,7 +121,9 @@ But how does the new UI get rendered when the state changes?
 
 - Dirty checking
 - Virtual DOM
-- Fine-grained reactivity و </v-clicks>
+- Fine-grained reactivity
+
+</v-clicks>
 
 ---
 
@@ -284,24 +286,8 @@ function diff(oldH, newH) {
 **Virtual DOM:**
 
 - Works in other environments (e.g. React Native)
+- Two passes to update the DOM (construct virtual DOM, then diff)
 - Batch updates together
-
-<!--
-With JSX, new DOM features aren't automatically supported.
--->
-
----
-
-# Which frameworks use which change detection?
-
-<v-clicks>
-
-- Angular: dirty checking pioneer
-- React: virtual DOM pioneer
-- Vue: virtual DOM with optimisations (skips static content, no JSX, etc.)
-- Svelte: compile-time dirty checking (no runtime diffing)
-
-</v-clicks>
 
 ---
 
@@ -363,78 +349,163 @@ function update(count) {
 
 # How do frameworks know state changed?
 
+<v-clicks>
+
 - Monkey-patching every API. Zone.js -> Angular
 - `setState` + Proxy events `SyntheticEvent` -> React
+- `SyntheticEvent` is removed in Preact
 - Compile-time analysis -> Svelte
 
+</v-clicks>
+
 <!--
-- Without zone.js, Angular wouldn't know when state is changed.
+- Without zone.js, Angular wouldn't know when state is changed. Mutation is detected by Angular
 - This was also necessary because browsers had different APIs.
+- `SyntheticEvent` is why some APIs aren't supported in React.
 -->
 
 ---
 
 # Fine-grained reactivity (signals)
 
----
-
-# Frameworks timeline
-
 ````md magic-move
-```js
-- Angular: Dirty checking + Zone.js
-- React: Virtual DOM
-- Vue: Virtual DOM
+```jsx
+function Parent() {
+  const [count, setCount] = createSignal(0);
+  console.log("Parent rendered"); // logs ONCE on mount
+
+  return (
+    <h2>Counter</h2>
+    <button onClick={() => setCount(count() + 1)}>+</button>
+    <span>{count()}</span>
+  );
+}
 ```
 
-```js
-- Angular: Dirty checking + Zone.js
-- React: Virtual DOM
-- Vue: Virtual DOM
-- Svelte: Compile-time dirty checking
-```
+```jsx
+function Parent() {
+  const [count, setCount] = createSignal(0);
+  console.log("Parent rendered");
 
-```js
-- Angular: Dirty checking + Zone.js
-- React: Virtual DOM
-- Preact: React - SyntheticEvent + optimisations (ESM, smaller bundle, etc.)
-- Vue: Virtual DOM
-- Svelte: Compile-time dirty checking
-```
+  return (
+    <h2>Counter</h2>
+    <button onClick={() => setCount(count() + 1)}>+</button>
+    <Child count={count} />
+  );
+}
 
-```js
-- Angular: Dirty checking + Zone.js
-- React: Virtual DOM
-- Preact: React - SyntheticEvent + optimisations
-- Vue: Virtual DOM
-- Svelte: Compile-time dirty checking
-- Solid: Signals
-```
-
-```js
-- Angular: Signals --- backwards compatible dirty checking + zone.js
-- React: Virtual DOM
-- Preact: React - SyntheticEvent + optimisations + Signals
-- Vue: Virtual DOM + Signals
-- Svelte: Compile-time dirty checking + Signals
-- Solid: Signals
+function Child(props) {
+  console.log("Child rendered"); // logs ONCE on mount
+  return (
+    <h3>Current value</h3>
+    <p>The count is: {props.count()}</p>
+  );
+}
 ```
 ````
 
 ---
 
-# Why do we have so many frontend frameworks?
+# Signals are becoming more popular
 
-- **Angular:** First framework Angular.js, then a complete rewrite to Angular.
-- **React:** Library for building UIs, but with a rich ecosystem that make it
-  like a framework.
-- **Vue**
-- **Svelte**
-- **Preact**
-- **Lit**
-- **Solid**
-- **Qwik**
-- **Astro**
+- Solid is built on signals
+- Angular added signals, made them default, and removed zone.js
+- Preact added signals
+- Vue added signals
+- Svelte added signals
+- JS framework-agnostic signals spec is in the works
+
+<!--
+- Angular started with Angular.js and action script then switch to Dart then TS. catching up on TypeScript and signals is impressive.
+-->
+
+---
+
+# Frameworks at a glance
+
+| Framework | Change detection                                   |
+| --------- | -------------------------------------------------- |
+| Angular   | Signals (zoneless) or Dirty checking               |
+| React     | Virtual DOM                                        |
+| Preact    | Virtual DOM + Signals                              |
+| Vue       | Virtual DOM (More optimised) + Signals (Vue Vapor) |
+| Svelte    | Compile-time + Signals                             |
+| Solid     | Signals                                            |
+
+<!--
+- Unlike React, Vue tracks where state is actually used and reruns only those parts. It's more like a React + state manager. React reruns the entire component tree.
+- Vue Vapor brings signals to Vue.
+-->
+
+---
+
+# Frameworks at a glance
+
+| Framework | Change detection       | Bundler               | Data fetching  |     |
+| --------- | ---------------------- | --------------------- | -------------- | --- |
+| Angular   | Signals                | Vite                  | Built-in       |     |
+| React     | Virtual DOM            | Vite, Turbopack, etc. | Tanstack, etc. |     |
+| Vue       | Virtual DOM + Signals  | Vite, etc.            | Built-in       |     |
+| Svelte    | Compile-time + Signals | Vite                  | Built-in       |     |
+| Solid     | Signals                | Vite                  | Built-in       |     |
+
+<!--
+It's worth mentioning that React by itself isn't a full framework. For routing, data fetching, state management, styling, etc. you need external libraries.
+Angular is battery-included. Vue is somewhere in between. Svelte and Solid have SvelteKit and SolidStart.
+-->
+
+---
+
+# Lit: Web components
+
+```html
+<simple-greeting name="World"></simple-greeting>
+```
+
+```js
+@customElement("simple-greeting")
+export class SimpleGreeting extends LitElement {
+  static styles = css`
+    p {
+      color: blue;
+    }
+  `;
+
+  @property()
+  name = "Somebody";
+
+  render() {
+    return html`<p>Hello, ${this.name}!</p>`;
+  }
+}
+```
+
+<!--
+Lit is a very simple framework for building web components. It uses dirty checking.
+-->
+
+---
+
+# Astro: Islands architecture
+
+---
+
+# Frameworks at a glance
+
+| Framework | Change detection                     | Bundler               | Router, SSR/SSG              | Data fetching | Template syntax |
+| --------- | ------------------------------------ | --------------------- | ---------------------------- | ------------- | --------------- |
+| Angular   | Signals (zoneless) or Dirty checking | devkit (Vite)         | Built-in                     | v17+          | Templates       |
+| React     | Virtual DOM                          | Vite, Turbopack, etc. | Tanstack, React router, Next | No            | JSX             |
+| Vue       | Virtual DOM + Signals                | Vite, etc.            | Built-in, Nuxt               | Yes           | Templates / JSX |
+| Svelte    | Compile-time + Signals               | SvelteKit             | SvelteKit                    | v5+           | Templates       |
+| Solid     | Signals                              | Vite                  | SolidStart                   | Yes           | JSX             |
+| Lit       | Dirty checking                       | 2018                  | No                           | Via lib       | Tagged literals |
+| Astro     | Islands / Static                     | 2021                  |                              | Via lib       | `.astro`        |
+| Qwik      | Resumability + signals               | 2022                  |                              | Yes           | JSX             |
+| HTMX      | Server-driven                        | 2020                  |                              | No            | HTML attrs      |
+| Alpine.js | Reactive proxies                     | 2019                  |                              | No            | HTML attrs      |
+
+---
 
 [//]:
   #
@@ -611,8 +682,9 @@ It's a straightforward migration, but thousands of files need this change and we
 -->
 
 ---
-layout: two-cols-header
-layoutClass: gap-x-8
+
+layout: two-cols-header layoutClass: gap-x-8
+
 ---
 
 # How a Good Migration Strategy Looks
@@ -673,8 +745,9 @@ Here are the key steps for a successful migration strategy:
 -->
 
 ---
-layout: two-cols-header
-layoutClass: gap-x-8
+
+layout: two-cols-header layoutClass: gap-x-8
+
 ---
 
 # Our Approach at Accurx
