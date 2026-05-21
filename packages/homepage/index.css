@@ -112,7 +112,10 @@ li:last-child {
 }
 
 .slideshow {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   padding: 0.75rem 0;
   color: var(--text);
   text-decoration: none;
@@ -125,18 +128,34 @@ li:last-child {
   }
 }
 
+.slideshow .title {
+  flex: 1;
+  min-width: 0;
+}
+
+.slideshow .meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.slideshow time {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
 .note {
   display: block;
   font-size: 0.875rem;
   color: var(--text-muted);
   margin-top: 4px;
+  font-weight: 400;
 }
 
 .unavailable {
   color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 12px;
 }
 
 .tag {
@@ -144,7 +163,8 @@ li:last-child {
   text-transform: uppercase;
   letter-spacing: 0.03em;
   padding: 2px 8px;
-  background: var(--bg-tag);
+  background: var(--border);
   border-radius: 4px;
   color: var(--text-muted);
+  white-space: nowrap;
 }
