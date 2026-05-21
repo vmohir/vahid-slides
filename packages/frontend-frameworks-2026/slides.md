@@ -932,4 +932,11 @@ Practical takeaway (personal opinion)
 - Mostly static content (marketing, docs, blogs) → Astro
 - Highly interactive app, want maximum perf → Signals (Solid, Svelte, Preact + signals)
 
+Recommended:
+
+- [React: the documentary](https://www.youtube.com/watch?v=8pDqJVdNa44)
+- [Angular: the documentary](https://www.youtube.com/watch?v=cRC9DlH45lA)
+- [Vite: the documentary](https://www.youtube.com/watch?v=bmWQqAKLgT4)
+- [Vue: the documentary](https://www.youtube.com/watch?v=OrxmtDw4pVI)
+
 </v-clicks>

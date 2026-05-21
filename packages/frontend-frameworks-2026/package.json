@@ -3,7 +3,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "slidev build --base /packages/code-migrations-at-scale/ --out ../../dist/packages/code-migrations-at-scale",
+    "build": "slidev build --base /packages/frontend-frameworks-2026/ --out ../../dist/packages/frontend-frameworks-2026",
     "dev": "slidev --open",
     "start": "slidev --open",
     "export": "slidev export"
