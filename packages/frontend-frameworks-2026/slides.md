@@ -39,32 +39,9 @@ h1 {
 </style>
 
 ---
-hideInToc: true
----
-
-# Agenda
-
-<Toc minDepth="1" maxDepth="1" />
-
----
-
-# What a frontend framework consists of
-
-<v-clicks>
-
-- Change detection: `UI = func(state)`
-- Router
-- HTTP client
-- Bundler + CLI
-- Style manager
-- State manager
-- Others: From validator, asset manager, etc.
-
-</v-clicks>
-
----
 layout: two-cols-header
 layoutClass: gap-x-8
+hideInToc: true
 ---
 
 # Why do we have so many frontend frameworks?
@@ -84,8 +61,41 @@ layoutClass: gap-x-8
 - **Lit**
 - **Astro**
 - **Qwik**
-- **HTMX**
-- **Alpine.js**
+
+---
+hideInToc: true
+---
+
+# Agenda
+
+<Toc minDepth="1" maxDepth="1" />
+
+---
+hideInToc: true
+---
+
+# What a frontend framework consists of
+
+<v-clicks>
+
+- Change detection: `UI = func(state)`
+- Router
+- HTTP client
+- Bundler + CLI
+- Style manager
+- State manager
+- Others: From validator, asset manager, etc.
+
+</v-clicks>
+
+---
+layout: intro
+---
+
+# Change detection
+
+
+Covers Angular vs React vs Vue vs Svelte vs Solid vs Lit
 
 ---
 
@@ -125,6 +135,26 @@ But how does the new UI get rendered when the state changes?
 
 </v-clicks>
 
+---
+hideInToc: true
+---
+
+# Changed detection strategies
+
+<div class="flex gap-x-4">
+
+<img src="./img_9.png" class="h-100%" />
+
+<v-click>
+
+<img src="./img_12.png" class="h-100%" />
+
+</v-click>
+
+</div>
+
+---
+hideInToc: true
 ---
 
 # Dirty checking
@@ -213,8 +243,14 @@ function diff(prevBndings, newBindings)  {
 ````
 
 ---
+layout: two-cols-header
+layoutClass: gap-x-8
+hideInToc: true
+---
 
 # Virtual DOM
+
+::left::
 
 ````md magic-move
 ```jsx
@@ -272,6 +308,12 @@ function diff(oldH, newH) {
 ```
 ````
 
+::right::
+
+![img_6.png](./img_6.png)
+
+---
+hideInToc: true
 ---
 
 # Dirty checking vs Virtual DOM
@@ -290,8 +332,10 @@ function diff(oldH, newH) {
 - Batch updates together
 
 ---
+hideInToc: true
+---
 
-# Svelte: dirty checking at compile time
+# Svelte v4: dirty checking at compile time
 
 ````md magic-move
 ```svelte
@@ -352,16 +396,27 @@ function update(count) {
 <v-clicks>
 
 - Monkey-patching every API. Zone.js -> Angular
-- `setState` + Proxy events `SyntheticEvent` -> React
-- `SyntheticEvent` is removed in Preact
+- `setState` -> React
 - Compile-time analysis -> Svelte
 
 </v-clicks>
 
 <!--
 - Without zone.js, Angular wouldn't know when state is changed. Mutation is detected by Angular
-- This was also necessary because browsers had different APIs.
-- `SyntheticEvent` is why some APIs aren't supported in React.
+-->
+
+---
+
+# Changed detection strategies
+
+<div class="flex h-100%">
+
+<img src="./img_12.png" class="h-100%" />
+
+</div>
+
+<!--
+Before explaining signals: signals are primitives and there's no change-detection system. Signals themselves are reactive.
 -->
 
 ---
@@ -405,49 +460,95 @@ function Child(props) {
 ````
 
 ---
+layout: two-cols-header
+layoutClass: gap-x-8
+---
 
 # Signals are becoming more popular
 
+::left::
+
 - Solid is built on signals
-- Angular added signals, made them default, and removed zone.js
+- Angular added signals, made them default, introduced zone-less
 - Preact added signals
-- Vue added signals
+- Vue added signals in Vue Vapor
 - Svelte added signals
-- JS framework-agnostic signals spec is in the works
+- JavaScript: signals spec in stage 1
+
+::right::
+
+<v-click>
+
+| Framework | Change detection                  |
+| --------- | --------------------------------- |
+| React     | Virtual DOM                       |
+| Preact    | Virtual DOM + Signals             |
+| Angular   | Signals (zoneless)                |
+| Vue       | Virtual DOM + Signals (Vue Vapor) |
+| Svelte    | Compile-time Signals              |
+| Solid     | Signals                           |
+
+</v-click>
 
 <!--
 - Angular started with Angular.js and action script then switch to Dart then TS. catching up on TypeScript and signals is impressive.
+- React proxies events `SyntheticEvent` because browsers had different APIs. Preact removed them.
+- `SyntheticEvent` is why some APIs aren't supported in React.
 -->
 
 ---
 
-# Frameworks at a glance
+<div class="flex h-100%">
 
-| Framework | Change detection                                   |
-| --------- | -------------------------------------------------- |
-| Angular   | Signals (zoneless) or Dirty checking               |
-| React     | Virtual DOM                                        |
-| Preact    | Virtual DOM + Signals                              |
-| Vue       | Virtual DOM (More optimised) + Signals (Vue Vapor) |
-| Svelte    | Compile-time + Signals                             |
-| Solid     | Signals                                            |
+<img src="./img_13.png" class="h-100%" />
 
-<!--
-- Unlike React, Vue tracks where state is actually used and reruns only those parts. It's more like a React + state manager. React reruns the entire component tree.
-- Vue Vapor brings signals to Vue.
--->
+</div>
 
 ---
+layout: two-cols-header
+layoutClass: gap-x-8
+---
 
-# Frameworks at a glance
+# Framework? Library? Vite?
 
-| Framework | Change detection       | Bundler               | Data fetching  |     |
-| --------- | ---------------------- | --------------------- | -------------- | --- |
-| Angular   | Signals                | Vite                  | Built-in       |     |
-| React     | Virtual DOM            | Vite, Turbopack, etc. | Tanstack, etc. |     |
-| Vue       | Virtual DOM + Signals  | Vite, etc.            | Built-in       |     |
-| Svelte    | Compile-time + Signals | Vite                  | Built-in       |     |
-| Solid     | Signals                | Vite                  | Built-in       |     |
+::left::
+
+<v-clicks>
+
+- Full framework: <span class="text-red">Angular</span>,
+  <span class="text-green">Vue</span>, <span class="text-orange">Svelte
+  (SvelteKit)</span> , <span class="text-sky">Solid (SolidStart)</span> with
+  built-in router, data fetching, ssr, etc.
+
+- <span class="text-blue">React</span>: need external libraries for routing,
+  data fetching, ssr, etc. (<span class="text-cyan">React Router</span>,
+  <span class="text-gray">Tanstack Query</span>,
+  <span class="text-slate">Next.js</span>)
+
+- <span class="text-purple">Vite</span> is a bundler. All frameworks use Vite
+  except Next.js (Turbopack)
+
+</v-clicks>
+
+::right::
+
+<v-click at="1">
+
+<img src="./img_15.png" class="h-35 mb-1" />
+
+</v-click>
+
+<v-click at="2">
+
+<img src="./img_14.png" class="h-35 mb-1" />
+
+</v-click>
+
+<v-click at="3">
+
+<img src="./img_16.png" class="h-25" />
+
+</v-click>
 
 <!--
 It's worth mentioning that React by itself isn't a full framework. For routing, data fetching, state management, styling, etc. you need external libraries.
@@ -486,6 +587,23 @@ Lit is a very simple framework for building web components. It uses dirty checki
 
 ---
 
+# SSR
+
+Run the client code in server, get the html, send html and bundle to client,
+hyderate
+
+Problems is when your site has mostly static content (like blogs), sending the
+bundle again and running it twice (server and client) isn't efficient.
+
+Solutions:
+
+- SSG: Build once (client or server + cache) but still bundle is run twice
+- RSC with Next.js App Router
+- Astro Islands
+- Qwik resumability
+
+---
+
 # Astro: Islands architecture
 
 ---
@@ -497,7 +615,7 @@ Lit is a very simple framework for building web components. It uses dirty checki
 | Angular   | Signals (zoneless) or Dirty checking | devkit (Vite)         | Built-in                     | v17+          | Templates       |
 | React     | Virtual DOM                          | Vite, Turbopack, etc. | Tanstack, React router, Next | No            | JSX             |
 | Vue       | Virtual DOM + Signals                | Vite, etc.            | Built-in, Nuxt               | Yes           | Templates / JSX |
-| Svelte    | Compile-time + Signals               | SvelteKit             | SvelteKit                    | v5+           | Templates       |
+| Svelte    | Compile-time + Signals               | Vite                  | SvelteKit                    | v5+           | Templates       |
 | Solid     | Signals                              | Vite                  | SolidStart                   | Yes           | JSX             |
 | Lit       | Dirty checking                       | 2018                  | No                           | Via lib       | Tagged literals |
 | Astro     | Islands / Static                     | 2021                  |                              | Via lib       | `.astro`        |
