@@ -47,3 +47,16 @@ strong {
 .slidev-layout h1 + p {
   opacity: 1;
 }
+
+.title-gradient {
+  position: relative;
+  .the-gradient {
+    background-image: linear-gradient(to right, #00d9a7, white);
+    color: transparent;
+    background-clip: text;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-shadow: none;
+  }
+}

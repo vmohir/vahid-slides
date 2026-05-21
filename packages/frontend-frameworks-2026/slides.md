@@ -21,22 +21,7 @@ hideInToc: true
 <img src="./accurx-logo.svg" class="h-4" />
 <br>
 
-<h1><span class="the-gradient">Frontend Frameworks</span>Frontend Frameworks 2026</h1>
-
-<style>
-h1 {
-    position: relative;
-}
-.the-gradient {
-    background-image: linear-gradient(to right, #00d9a7, white);
-    color: transparent;
-    background-clip: text;
-    position: absolute;
-    top: 0;
-    left: 0;
-    text-shadow: none;
-}
-</style>
+<h1 class="title-gradient"><span class="the-gradient">Frontend Frameworks</span>Frontend Frameworks 2026</h1>
 
 ---
 layout: two-cols-header
@@ -76,8 +61,6 @@ hideInToc: true
 
 # What a frontend framework consists of
 
-<v-clicks>
-
 - Change detection: `UI = func(state)`
 - Router
 - HTTP client
@@ -86,16 +69,30 @@ hideInToc: true
 - State manager
 - Others: From validator, asset manager, etc.
 
-</v-clicks>
-
 ---
 layout: intro
+hideInToc: true
 ---
 
-# Change detection
+<h1 class="title-gradient"><span class="the-gradient">Change detection</span>Change detection</h1>
 
+<div class="flex flex-wrap gap-x-2">
 
-Covers Angular vs React vs Vue vs Svelte vs Solid vs Lit
+Covers
+
+<span><logos-angular-icon /> Angular </span>
+
+<span> <logos-react /> React</span>
+
+<span><logos-vue /> Vue</span>
+
+<span> <logos-svelte-icon /> Svelte </span>
+
+<span><logos-solidjs-icon /> Solid</span>
+
+<span> <logos-lit-icon /> Lit</span>
+
+</div>
 
 ---
 
@@ -113,7 +110,7 @@ on(EVENT) => manipulate DOM
 
 <v-click>
 
-Change detection frameworks:
+Frameworks:
 
 ```js
 UI = component(state);
@@ -123,7 +120,7 @@ UI = component(state);
 
 <v-click>
 
-But how does the new UI get rendered when the state changes?
+Change detection strategies:
 
 </v-click>
 
@@ -141,7 +138,7 @@ hideInToc: true
 
 # Changed detection strategies
 
-<div class="flex gap-x-4">
+<div class="flex gap-x-4 h-90%">
 
 <img src="./img_9.png" class="h-100%" />
 
@@ -157,7 +154,7 @@ hideInToc: true
 hideInToc: true
 ---
 
-# Dirty checking
+## Dirty checking
 
 ````md magic-move
 ```js
@@ -248,7 +245,7 @@ layoutClass: gap-x-8
 hideInToc: true
 ---
 
-# Virtual DOM
+## Virtual DOM
 
 ::left::
 
@@ -316,7 +313,7 @@ function diff(oldH, newH) {
 hideInToc: true
 ---
 
-# Dirty checking vs Virtual DOM
+## Dirty checking vs Virtual DOM
 
 **Dirty checking:**
 
@@ -335,7 +332,7 @@ hideInToc: true
 hideInToc: true
 ---
 
-# Svelte v4: dirty checking at compile time
+## <logos-svelte-icon /> Svelte v4: dirty checking at compile time
 
 ````md magic-move
 ```svelte
@@ -390,8 +387,10 @@ function update(count) {
 ````
 
 ---
+hideInToc: true
+---
 
-# How do frameworks know state changed?
+## How do frameworks know state changed?
 
 <v-clicks>
 
@@ -409,7 +408,7 @@ function update(count) {
 
 # Changed detection strategies
 
-<div class="flex h-100%">
+<div class="flex h-90%">
 
 <img src="./img_12.png" class="h-100%" />
 
@@ -479,14 +478,14 @@ layoutClass: gap-x-8
 
 <v-click>
 
-| Framework | Change detection                  |
-| --------- | --------------------------------- |
-| React     | Virtual DOM                       |
-| Preact    | Virtual DOM + Signals             |
-| Angular   | Signals (zoneless)                |
-| Vue       | Virtual DOM + Signals (Vue Vapor) |
-| Svelte    | Compile-time Signals              |
-| Solid     | Signals                           |
+| Framework                      | Change detection                  |
+| ------------------------------ | --------------------------------- |
+| <logos-react /> React          | Virtual DOM                       |
+| <logos-preact /> Preact        | Virtual DOM + Signals             |
+| <logos-angular-icon /> Angular | Signals (zoneless)                |
+| <logos-vue /> Vue              | Virtual DOM + Signals (Vue Vapor) |
+| <logos-svelte-icon /> Svelte   | Compile-time Signals              |
+| <logos-solidjs-icon /> Solid   | Signals                           |
 
 </v-click>
 
@@ -557,7 +556,7 @@ Angular is battery-included. Vue is somewhere in between. Svelte and Solid have 
 
 ---
 
-# Lit: Web components
+# <logos-lit-icon /> Lit: Web components
 
 ```html
 <simple-greeting name="World"></simple-greeting>
@@ -586,25 +585,203 @@ Lit is a very simple framework for building web components. It uses dirty checki
 -->
 
 ---
+layout: intro
+---
 
-# SSR
+<h1 class="title-gradient"><span class="the-gradient">Rendering strategies</span>Rendering strategies</h1>
 
-Run the client code in server, get the html, send html and bundle to client,
-hyderate
+<div class="flex flex-wrap gap-x-4">
 
-Problems is when your site has mostly static content (like blogs), sending the
-bundle again and running it twice (server and client) isn't efficient.
+Covers
 
-Solutions:
+<span><logos-react /> React Server Components </span>
+
+<span> <logos-nextjs-icon /> Next.js</span>
+
+<span><span class="astro"><logos-astro-icon /></span> Astro</span>
+
+<span> <logos-qwik-icon /> Qwik </span>
+
+</div>
+
+<style>
+.astro {
+  background: #fff;
+  padding: 4px 4px 0;
+border-radius: 10px;
+}
+</style>
+
+---
+layout: two-cols-header
+layoutClass: gap-x-8
+---
+
+# Server side rendering (SSR)
+
+Run the bundle in server, get the html, send html and bundle to client, hyderate
+
+::left::
+
+Client side rendering (CSR)
+
+![img_17.png](./img_17.png)
+
+::right::
+
+Server side rendering (SSR)
+
+![img_18.png](./img_18.png)
+
+<span v-click class="abs-html">
+HTML
+</span>
+
+<style>
+.abs-html {
+  position: absolute;
+    top: 72%;
+    left: 71.7%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    font-weight: bold;
+    color: #5f2b00;
+    background: #ff99008a;
+    padding: 2px 4px;
+}
+</style>
+
+---
+
+![img_22.png](./img_22.png)
 
 - SSG: Build once (client or server + cache) but still bundle is run twice
 - RSC with Next.js App Router
 - Astro Islands
 - Qwik resumability
 
+<!--
+Problem is when your site has mostly static content (like blogs), sending the
+bundle again and running it twice (server and client) isn't efficient.
+
+Solutions:
+-->
+
+---
+layout: two-cols-header
+layoutClass: gap-x-8
+---
+
+# SSR, SSG, RSC
+
+::left::
+
+````md magic-move
+```tsx
+// Runs on server + client:
+export default function Page() {
+  const data = fetch("/api/data");
+  function submit() { post("/api/submit") }
+
+  return (
+    <div>{data}</div>
+    <button onClick={submit()}>Submit</button>
+  );
+}
+```
+
+```tsx
+// ----- SSR -----
+// Runs on server:
+export async function getServerSideProps() {
+  const data = await db.connect().query();
+  return data;
+}
+
+// Runs on server + client
+export default function Page({ data }) {
+  function submit() { post("/api/submit") }
+
+  return (
+    <div>{data}</div>
+    <button onClick={submit()}>Submit</button>
+  );
+}
+```
+
+```tsx
+// ----- SSG -----
+// Runs on compile time:
+export async function getStaticData() {
+  const data = await loadDataFromFileSystem();
+  return data;
+}
+
+// Runs on compile time + client
+export default function Page({ data }) {
+  function submit() { post("/api/submit") }
+
+  return (
+    <div>{data}</div>
+    <button onClick={submit()}>Submit</button>
+  );
+}
+```
+
+```tsx
+// ----- RSC -----
+// Runs on server:
+export default function Page({ data }) {
+  const data = await db.connect().query();
+  function submit() { post("/api/submit") }
+
+  return (
+    <div>{data}</div>
+    <button onClick={submit()}>Submit</button>
+  );
+}
+```
+````
+
+::right::
+
+<div v-click.hide="1">
+
+![img_19.png](./img_19.png)
+
+</div>
+
+<div v-click="[1,2]">
+
+![img_18.png](./img_18.png)
+
+</div>
+
+<div v-click="[2,3]">
+
+![img_21.png](./img_21.png)
+
+</div>
+
+<div v-click="[3,4]">
+
+![img_23.png](./img_23.png)
+
+</div>
+
+<style>
+.slidev-vclick-hidden {
+display: none !important;
+}
+</style>
+
 ---
 
 # Astro: Islands architecture
+
+---
+
+# Qwik: Resumability
 
 ---
 
@@ -620,8 +797,6 @@ Solutions:
 | Lit       | Dirty checking                       | 2018                  | No                           | Via lib       | Tagged literals |
 | Astro     | Islands / Static                     | 2021                  |                              | Via lib       | `.astro`        |
 | Qwik      | Resumability + signals               | 2022                  |                              | Yes           | JSX             |
-| HTMX      | Server-driven                        | 2020                  |                              | No            | HTML attrs      |
-| Alpine.js | Reactive proxies                     | 2019                  |                              | No            | HTML attrs      |
 
 ---
 
